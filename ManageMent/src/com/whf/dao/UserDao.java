@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 import com.whf.base.BaseDaoImpl;
 import com.whf.pojo.Student;
-import com.whf.util.DbUtil;
+import com.whf.util.JdbcUtils;
 
 //用户DAO类
 public class UserDao extends BaseDaoImpl <Student> {     
@@ -37,7 +37,7 @@ public class UserDao extends BaseDaoImpl <Student> {
         	Connection con=null;
         	boolean bool = false;
         	try {
-    			con=new DbUtil().getCon();//获取连接
+    			con=JdbcUtils.getConnection();
     			String sql = "select userName from student";
     			PreparedStatement ps = con.prepareStatement(sql);
     			ResultSet rs3 = ps.executeQuery();

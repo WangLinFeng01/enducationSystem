@@ -22,7 +22,6 @@ import javax.swing.border.EmptyBorder;
 import com.mysql.jdbc.Connection;
 import com.whf.dao.UserDao;
 import com.whf.pojo.Student;
-import com.whf.util.DbUtil;
 import com.whf.util.StringUtil;
 
 public class LogonFrame extends JFrame {
@@ -30,7 +29,6 @@ JFrame jf=new JFrame();
 	private JPanel contentPane;
 	private JTextField userNameText;
 	private JTextField passwordText;
-	private DbUtil dbUtil=new DbUtil();
 	private UserDao userDao=new UserDao();
 
 	/**

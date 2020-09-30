@@ -11,7 +11,9 @@ import java.util.Vector;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import com.whf.util.DbUtil;
+import com.whf.util.JdbcUtils;
+
+
 
 //实现线程
 public class ImlThread extends Thread{
@@ -37,7 +39,7 @@ public class ImlThread extends Thread{
 		
 	     try {
 			//获取链接
-			Connection conn=new DbUtil().getCon();
+	    	Connection conn=JdbcUtils.getConnection();
 					//创建Statement对象
 			String sql="select * from Student";
 			PreparedStatement cmd = conn.prepareStatement(sql);
@@ -91,7 +93,7 @@ public class ImlThread extends Thread{
    public int length() {
 	   int x = 0;
 	   try {
-		Connection con =new DbUtil().getCon();
+		Connection con =JdbcUtils.getConnection();
 		String sql = "select userName from student";
 		//拿到预编译
 		PreparedStatement ps = con.prepareStatement(sql);

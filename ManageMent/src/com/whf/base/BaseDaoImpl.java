@@ -7,12 +7,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.whf.util.DbUtil;
+
+import com.whf.util.JdbcUtils;
 
 
 public class BaseDaoImpl<T>{
 	private Class clazz;
-	DbUtil dbUtil = new DbUtil();
+
 	public BaseDaoImpl(){
 		//拿到son的父类 类型
 		Type type=this.getClass().getGenericSuperclass() ;
@@ -66,7 +67,7 @@ public class BaseDaoImpl<T>{
 		Connection con=null;
 		try {
 			//拿到数据库连接
-			con=dbUtil.getCon();
+			con=JdbcUtils.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			//传参
 			if(params!=null) {
@@ -76,6 +77,7 @@ public class BaseDaoImpl<T>{
 			}
 			// 执行sql
 			ps.executeUpdate();
+			con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}//获取连接

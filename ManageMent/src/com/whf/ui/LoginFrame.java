@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,10 +18,11 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.mysql.jdbc.Connection;
+
 import com.whf.dao.UserDao;
 import com.whf.pojo.Student;
-import com.whf.util.DbUtil;
+
+import com.whf.util.JdbcUtils;
 import com.whf.util.StringUtil;
 import javax.swing.JScrollPane;
 
@@ -28,7 +30,7 @@ public class LoginFrame extends JFrame {
 
 
 
-	private DbUtil dbUtil=new DbUtil();
+	
 	private UserDao userDao=new UserDao();
 	private JPanel contentPane;
 	private JTextField stupNameText;
@@ -186,7 +188,7 @@ public class LoginFrame extends JFrame {
     	Student user=new Student(userName,password);
     	Connection con=null;
     	try {
-			con=dbUtil.getCon();
+    		con=JdbcUtils.getConnection();
 			Student currentUser=userDao.login(con, user);
 			if(null!=currentUser) {
 				JOptionPane.showMessageDialog(null, "µÇÂ¼³É¹¦£¡");		
