@@ -1,4 +1,4 @@
-package com.whf.model;
+package com.whf.pojo;
 
 public class Student {
 

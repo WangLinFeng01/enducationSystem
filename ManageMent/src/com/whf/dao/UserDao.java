@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.whf.base.BaseDaoImpl;
-import com.whf.model.Student;
+import com.whf.pojo.Student;
 import com.whf.util.DbUtil;
 
 //”√ªßDAO¿‡

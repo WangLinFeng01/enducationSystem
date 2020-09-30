@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.mysql.jdbc.Connection;
 import com.whf.dao.UserDao;
-import com.whf.model.Student;
+import com.whf.pojo.Student;
 import com.whf.util.DbUtil;
 import com.whf.util.StringUtil;
 
