@@ -39,6 +39,8 @@ public class RandomRollCallUI {
 			}
 		});
 	}
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
