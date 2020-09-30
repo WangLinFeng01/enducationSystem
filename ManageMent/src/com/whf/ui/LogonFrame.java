@@ -132,6 +132,8 @@ JFrame jf=new JFrame();
 	    	userNameText.setText("");
 	    	return;
 		}
+		
+		
     	//添加数据----获取的是用户名和密码
 		
     	Student user=new Student(userName,password);
