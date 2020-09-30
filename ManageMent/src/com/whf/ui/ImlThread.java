@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.Vector;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import com.whf.util.DbUtil;
 
@@ -36,7 +37,7 @@ public class ImlThread extends Thread{
 		
 	     try {
 			//获取链接
-			Connection conn=DbUtil.getCon();
+			Connection conn=new DbUtil().getCon();
 					//创建Statement对象
 			String sql="select * from Student";
 			PreparedStatement cmd = conn.prepareStatement(sql);
@@ -44,33 +45,39 @@ public class ImlThread extends Thread{
 			//创建结果集
 			ResultSet rs= cmd.executeQuery(sql);
 			while(rs.next()) {
-				//获取数据库表在第一行第二例
+				//获取数据库表在第一行第二例的姓名
 				String m=rs.getString(2);
-				//获取数据库表在第一行第三例
-				String m1=rs.getString(3);
-				//拼接姓名和学好
-				String m2=m+" "+m1;
-				a.add(m2);
+				a.add(m);
 			}
-			System.out.println(a);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
+	int start = length();//得到名字的个数
    @Override
    public void run() {
+	   //数据库没有字段
+	   
 	while(isStop) {
 		try {
 			//设置时间间隔为50毫秒
-			Thread.sleep(50);
-			
+			if(start>0&&start<5) {//判断停止时间
+				Thread.sleep(70);
+			}else {
+				Thread.sleep(100);
+			}
+			//判断数据表是否为空
+			if(start ==0) {
+			JOptionPane.showMessageDialog(null, "抱歉,没有学生可以点名;");
+			isStop =false;
+			}			
             //将数据存入lblNewLabel_1
 			lblNewLabel_1.setText(vector.get(getn).toString());
 			getn+=1;
 			//System.out.println(getn);
-			if(getn>=5) {
+			if(getn>=start) {
 				getn=0;
 			}
 		} catch (Exception e) {
@@ -78,7 +85,24 @@ public class ImlThread extends Thread{
 		}
 	  }
    }
-
+   
+   //得到数据库中名字的长度(wang)
+   public int length() {
+	   int x = 0;
+	   try {
+		Connection con =new DbUtil().getCon();
+		String sql = "select userName from student";
+		//拿到预编译
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();//关于username的结果集
+		while(rs.next()) {
+			x++;
+		}		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	   return x;
+   }
 //public static int getnumber(int n){ 
 //	 //根据你输入的总人数返回随机在人数范围内的一个学号
 //	   Random r = new Random();
