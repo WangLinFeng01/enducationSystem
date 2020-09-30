@@ -149,11 +149,6 @@ public class LoginFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				
-				
-				
-				
-				
 			}
 		});
 		panel.add(rbtn1);
