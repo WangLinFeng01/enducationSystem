@@ -68,11 +68,7 @@ public class ImlThread extends Thread{
 			}else {
 				Thread.sleep(100);
 			}
-			//判断数据表是否为空
-			if(start ==0) {
-			JOptionPane.showMessageDialog(null, "抱歉,没有学生可以点名;");
-			isStop =false;
-			}			
+						
             //将数据存入lblNewLabel_1
 			lblNewLabel_1.setText(vector.get(getn).toString());
 			getn+=1;
