@@ -22,6 +22,7 @@ import com.whf.dao.UserDao;
 import com.whf.model.Student;
 import com.whf.util.DbUtil;
 import com.whf.util.StringUtil;
+import javax.swing.JScrollPane;
 
 public class LoginFrame extends JFrame {
 
@@ -91,14 +92,6 @@ public class LoginFrame extends JFrame {
 		passwordText.setBounds(223, 188, 137, 21);
 		contentPane.add(passwordText);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("\u6559\u5E08");
-		rdbtnNewRadioButton.setBounds(214, 239, 57, 23);
-		contentPane.add(rdbtnNewRadioButton);
-		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("\u5B66\u751F");
-		rdbtnNewRadioButton_1.setBounds(303, 240, 57, 21);
-		contentPane.add(rdbtnNewRadioButton_1);
-		
 		JButton btnNewButton_1_1 = new JButton("\u767B\u5F55");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -146,6 +139,39 @@ public class LoginFrame extends JFrame {
 		});
 		btnNewButton_1_1_2_1.setBounds(288, 278, 82, 32);
 		contentPane.add(btnNewButton_1_1_2_1);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(192, 229, 190, 39);
+		contentPane.add(panel);
+		
+		JRadioButton rbtn1 = new JRadioButton("\u6559\u5E08");
+		rbtn1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+				
+				
+				
+				
+			}
+		});
+		panel.add(rbtn1);
+		
+		JRadioButton rbtn2 = new JRadioButton("\u5B66\u751F");
+		rbtn2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+				
+				
+				
+				
+				
+			}
+		});
+		panel.add(rbtn2);
 	}
 
 	//登录事件处理
