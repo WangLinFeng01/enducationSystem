@@ -8,10 +8,11 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+import javax.swing.JRadioButton;
 
-public class TeacherFrame {
-
-	private JFrame frame;
+public class TeacherFrame extends JFrame {
+	
+	JFrame frame;
 	private JTextField textField;
 
 	/**
@@ -21,14 +22,16 @@ public class TeacherFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TeacherFrame window = new TeacherFrame();
-					window.frame.setVisible(true);
+					TeacherFrame frame= new TeacherFrame();
+					frame.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
+
+	
 
 	/**
 	 * Create the application.
@@ -43,7 +46,7 @@ public class TeacherFrame {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("\u6559\u5E08\u7BA1\u7406\u754C\u9762");
-		frame.setBounds(100, 100, 542, 399);
+		frame.setBounds(100, 100, 567, 421);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -66,5 +69,9 @@ public class TeacherFrame {
 		textField.setBounds(187, 43, 111, 19);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
+		
+		JButton btnNewButton_2 = new JButton("\u67E5\u770B\u8BFE\u7A0B\u8FDB\u5EA6");
+		btnNewButton_2.setBounds(121, 261, 111, 25);
+		frame.getContentPane().add(btnNewButton_2);
 	}
 }

@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 import com.whf.base.BaseDaoImpl;
 import com.whf.pojo.Student;
+import com.whf.pojo.Teacher;
 import com.whf.util.JdbcUtils;
 
 //用户DAO类
@@ -32,6 +33,26 @@ public class UserDao extends BaseDaoImpl <Student> {
                      
               return resultUser; 
 }
+        
+        public  Teacher login1(Connection con1,Teacher user1) throws Exception{
+            Teacher resultUser=null;
+            String sql="select * from Teacher where teaName=? and password=?";
+            PreparedStatement ps=con1.prepareStatement(sql);       
+            ps.setString(1,user1.getUserName());
+            ps.setString(2,user1.getPassWord());
+            ResultSet rs=ps.executeQuery();
+            if(rs.next()) {
+          	  resultUser=new Teacher();
+                resultUser.setPassWord(rs.getString("password"));     
+                resultUser.setUserName(rs.getString("teaName"));             
+            }
+                   
+            return resultUser; 
+}
+        
+        
+        
+        
         //用户的注册验证事件----判断用户名是否存在
         public Boolean isLogonFrame(String userName) {
         	Connection con=null;

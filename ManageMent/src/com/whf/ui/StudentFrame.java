@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class StudentFrame {
+public class StudentFrame extends JFrame{
 
 	private JFrame frame;
 	private JTextField textField;
@@ -19,8 +19,8 @@ public class StudentFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StudentFrame window = new StudentFrame();
-					window.frame.setVisible(true);
+					StudentFrame frame = new StudentFrame();
+					frame.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

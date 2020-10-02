@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,21 +22,21 @@ import javax.swing.border.EmptyBorder;
 
 import com.whf.dao.UserDao;
 import com.whf.pojo.Student;
-
+import com.whf.pojo.Teacher;
 import com.whf.util.JdbcUtils;
 import com.whf.util.StringUtil;
+import com.whf.ui.TeacherFrame;
+
 import javax.swing.JScrollPane;
 
 public class LoginFrame extends JFrame {
 
-
-
-	
 	private UserDao userDao=new UserDao();
 	private JPanel contentPane;
 	private JTextField stupNameText;
 	private JTextField passwordText;
-
+    private JRadioButton rbtn1;
+    private JRadioButton rbtn2;
 
 	/**
 	 * Launch the application.
@@ -95,10 +96,16 @@ public class LoginFrame extends JFrame {
 		contentPane.add(passwordText);
 		
 		JButton btnNewButton_1_1 = new JButton("\u767B\u5F55");
+		btnNewButton_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			
+			}
+		});
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loginActionPerfromed(e);
-				
+				toTeacherFrame(e);
 			}
 		});
 		btnNewButton_1_1.setIcon(new ImageIcon(LoginFrame.class.getResource("/images/login.png")));
@@ -147,34 +154,57 @@ public class LoginFrame extends JFrame {
 		contentPane.add(panel);
 		
 		JRadioButton rbtn1 = new JRadioButton("\u6559\u5E08");
+		rbtn1.setSelected(true);
 		rbtn1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+			
 			}
 		});
 		panel.add(rbtn1);
 		
 		JRadioButton rbtn2 = new JRadioButton("\u5B66\u751F");
+		rbtn2.setSelected(true);
 		rbtn2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				
-				
-				
-				
-				
-				
+			
 			}
 		});
 		panel.add(rbtn2);
+		
+		ButtonGroup bg=new ButtonGroup();
+		bg.add(rbtn1);
+		bg.add(rbtn2);
+	}
+        
+	
+	protected void toTeacherFrame(ActionEvent e) {
+		
+		if(rbtn1.isSelected()) {
+			System.out.print("真假"+rbtn1.isSelected());
+		//登录跳转至教师界面
+    	this.dispose();//当前的窗体关闭
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TeacherFrame frame = new TeacherFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		}
+		
 	}
 
 	//登录事件处理
     protected void loginActionPerfromed(ActionEvent e) {
 		String userName=this.stupNameText.getText();
 		String password=new String(this.passwordText.getText());
+    	String teaName=this.stupNameText.getText();
 		if(StringUtil.isEmpty(userName)) {
 			JOptionPane.showMessageDialog(null, "用户名不能为空！");
 			return;
@@ -185,12 +215,16 @@ public class LoginFrame extends JFrame {
 	       return;	
 		}
 		
+		
+		
     	Student user=new Student(userName,password);
+    	Teacher tea=new Teacher(teaName,password);
     	Connection con=null;
     	try {
     		con=JdbcUtils.getConnection();
 			Student currentUser=userDao.login(con, user);
-			if(null!=currentUser) {
+			Teacher currentUser1=userDao.login1(con, tea);
+			if(null!=currentUser||null!=currentUser1) {
 				JOptionPane.showMessageDialog(null, "登录成功！");		
 			}else {
 				JOptionPane.showMessageDialog(null, "用户名或者密码错误！");		
@@ -200,13 +234,15 @@ public class LoginFrame extends JFrame {
 			
 			e1.printStackTrace();
 		}
-    	
+    
     	
     	
 	}
 
     
+    //注册页面的跳转
 	protected void toLogon(ActionEvent e) {
+		
     	this.dispose();//当前的窗体关闭
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
