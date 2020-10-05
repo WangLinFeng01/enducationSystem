@@ -1,4 +1,9 @@
 package com.whf.dao;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -77,6 +82,48 @@ public class UserDao extends BaseDaoImpl <Student> {
         	return bool;
         }
         
+        /**
+         * 
+         * @param route 下载文件的绝对路径
+         * @param s 要下载的题的信息
+         * @throws IOException 
+         */
+        
+        //用户下载实现功能
+        public void downFile(String route,String s){
+        	
+        	File file = new File(route+"//试卷.txt");
+            File fileParent = file.getParentFile();//返回的是File类型,可以调用exsit()等方法
+        	if(!fileParent.exists()) {//判断是否存在
+        		fileParent.mkdirs();
+        	}
+        	if(!file.exists()) {
+        		try {
+					file.createNewFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+        	}
+        	//将文件从内存写入本地中
+        	BufferedWriter write=null;
+        	try {
+        		write= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
+        		String ss = "a、b是数轴上原点两旁的点，则它们表示的两个有理数是（?）?\r\nA、互为相反数\r\nB、绝对值相等\r\nC、是符号不同的数\r\nC、是符号不同的数\r\nD、都是负数\r\nnull\r\n2、有";
+        		System.out.println(ss+"结束");
+        		System.out.println(s);
+        		write.write(s);
+        		write.newLine();
+        		write.flush();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+        	try {
+				write.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        	
+        }
         
         
         
