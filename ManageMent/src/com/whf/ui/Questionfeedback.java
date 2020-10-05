@@ -30,11 +30,12 @@ import java.awt.event.ActionEvent;
 
 public class Questionfeedback extends JFrame{
     
-	private JFrame frame;
+    public JFrame frame;
 	private JTextField textField;
 	protected int x;
 	private JLabel lblNewLabel_1;
 	private JTextField textField_1;
+	private JButton btnNewButton_1;
 
 	/**
 	 * Launch the application.
@@ -66,7 +67,7 @@ public class Questionfeedback extends JFrame{
 		frame = new JFrame();
 		frame.setForeground(Color.BLACK);
 		frame.setFont(new Font("Copperplate Gothic Light", Font.BOLD | Font.ITALIC, 12));
-		frame.setTitle("\u7591\u95EE\u70B9\u53CD\u9988");
+		frame.setTitle("\u5B66\u751F\u7591\u95EE\u53CD\u9988");
 		frame.setBounds(100, 100, 626, 495);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -107,7 +108,7 @@ public class Questionfeedback extends JFrame{
 			}
 			
 		});
-		btnNewButton.setBounds(238, 354, 122, 41);
+		btnNewButton.setBounds(178, 354, 122, 41);
 		frame.getContentPane().add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("\u53CD\u9988\u5185\u5BB9\uFF1A");
@@ -127,6 +128,35 @@ public class Questionfeedback extends JFrame{
 		textField_1.setBounds(137, 101, 162, 41);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
+		
+		btnNewButton_1 = new JButton("\u8FD4\u56DE");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				toStudent(e);
+			}
+		});
+		btnNewButton_1.setBounds(347, 354, 122, 41);
+		frame.getContentPane().add(btnNewButton_1);
+	}
+
+	protected void toStudent(ActionEvent e) {
+		// TODO Auto-generated method stub
+		this.dispose1();//当前的窗体关闭
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					StudentFrame frame = new StudentFrame();
+					frame.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});		
+	}
+
+	private void dispose1() {
+		// TODO Auto-generated method stub
+		frame.dispose();
 	}
 
 }

@@ -29,7 +29,7 @@ import com.whf.util.QueryRunner;
 
 public class J_scheduleUI {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTable table;
 	private T_scheduleDao t = new T_scheduleDaoImpl();
 	private JTextField textField;
@@ -141,6 +141,7 @@ public class J_scheduleUI {
 		JButton btnNewButton_2 = new JButton("返回主界面");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				toTeacher(arg0);
 				
 			}
 		});
@@ -182,6 +183,28 @@ public class J_scheduleUI {
 		fillTable();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
+	//跳转至教师界面
+	protected void toTeacher(ActionEvent arg0) {
+		this.dispose();//当前的窗体关闭
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TeacherFrame frame = new TeacherFrame();
+					frame.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});		
+		
+	}
+
+	private void dispose() {
+		frame.dispose();
+		
+	}
+
 	//将数学的表格中的内容拿出来
 	private void fillTable() {
 		TableModel jmodel=table.getModel();

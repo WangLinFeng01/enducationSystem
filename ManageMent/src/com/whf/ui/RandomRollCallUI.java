@@ -90,7 +90,7 @@ public class RandomRollCallUI {
 		    	}
 			}
 		});
-		btn.setBounds(179, 328, 97, 23);
+		btn.setBounds(179, 328, 97, 31);
 		frame.getContentPane().add(btn);
 		
 		//停止按钮
@@ -106,7 +106,7 @@ public class RandomRollCallUI {
 		    		}
 			}
 		});
-		btn_1.setBounds(384, 328, 97, 23);
+		btn_1.setBounds(384, 328, 97, 31);
 		frame.getContentPane().add(btn_1);
 		
 		JLabel lblNewLabel = new JLabel("\u73A9\u7684\u5C31\u662F\u6FC0\u60C5");
@@ -114,8 +114,42 @@ public class RandomRollCallUI {
 		lblNewLabel.setBounds(179, 98, 302, 53);
 		frame.getContentPane().add(lblNewLabel);
 		
+		JButton btnNewButton = new JButton("\u8FD4\u56DE");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				toTeacherFrame(e);
+			}
+		});
+		btnNewButton.setBounds(179, 391, 97, 31);
+		frame.getContentPane().add(btnNewButton);
+		
 		
 	}
+	protected void toTeacherFrame(ActionEvent e) {
+
+		//跳转至老师界面
+    	this.dispose();//当前的窗体关闭
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TeacherFrame frame = new TeacherFrame();
+					frame.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});		
+		
+		
+	}
+
+
+	private void dispose() {
+		frame.dispose();
+		
+	}
+
+
 	void AListener(ExListenerDao listener, JLabel lblNewLabel_1){
 		this.listener=listener;
 		listener.set(btn, btn_1, lblNewLabel_1, isStop);

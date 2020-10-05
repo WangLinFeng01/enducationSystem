@@ -99,7 +99,7 @@ public class J_ExamingUI {
 			}
 
 		});
-		btnNewButton_1.setBounds(395, 327, 92, 31);
+		btnNewButton_1.setBounds(284, 327, 92, 31);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
@@ -125,7 +125,7 @@ public class J_ExamingUI {
 				
 			}
 		});
-		btnNewButton_3.setBounds(185, 327, 81, 31);
+		btnNewButton_3.setBounds(59, 327, 81, 31);
 		frame.getContentPane().add(btnNewButton_3);
 		
 		JPanel panel = new JPanel();
@@ -203,7 +203,7 @@ public class J_ExamingUI {
 				textField.requestFocus();
 			}
 		});
-		btnNewButton_2.setBounds(291, 327, 78, 31);
+		btnNewButton_2.setBounds(172, 327, 78, 31);
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JLabel lblNewLabel_6 = new JLabel("");
@@ -211,9 +211,37 @@ public class J_ExamingUI {
 		frame.getContentPane().add(lblNewLabel_6);
 		//接口设置姓名
 				lblNewLabel_6.setText("欢迎你! 考生"+nameStu);
+				
+				JButton btnNewButton_4 = new JButton("\u8FD4\u56DE");
+				btnNewButton_4.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						toStudent(e);
+					}
+				});
+				btnNewButton_4.setBounds(409, 328, 81, 29);
+				frame.getContentPane().add(btnNewButton_4);
 		//测试是否拿到
 //		System.out.println("dd:"+examId);
 
+		
+	}
+
+	protected void toStudent(ActionEvent e) {
+		this.dispose1();//当前的窗体关闭
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					StudentFrame frame = new StudentFrame();
+					frame.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});		
+	}
+
+	private void dispose1() {
+		frame.dispose();
 		
 	}
 

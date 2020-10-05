@@ -25,7 +25,7 @@ import com.whf.pojo.Student;
 import com.whf.util.StringUtil;
 
 public class LogonFrame extends JFrame {
-JFrame jf=new JFrame();
+
 	private JPanel contentPane;
 	private JTextField userNameText;
 	private JTextField passwordText;

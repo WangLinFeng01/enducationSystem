@@ -21,9 +21,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Queryfeedback {
+public class Queryfeedback extends JFrame {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTable table;
 	private FeedbackDao feedbackDao = new FeedbackDaoImpl();
 
@@ -79,10 +79,10 @@ public class Queryfeedback {
 		table.getColumnModel().getColumn(1).setMinWidth(364);
 		scrollPane.setViewportView(table);
 		
-		JButton btnNewButton = new JButton("确定");
+		JButton btnNewButton = new JButton("\u786E\u5B9A");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				toBack1(arg0);
 			}
 		});
 		btnNewButton.setBounds(415, 259, 85, 29);
@@ -90,6 +90,25 @@ public class Queryfeedback {
 		//填充表格
 		fillTable();
 	}
+	protected void toBack1(ActionEvent arg0) {
+		this.dispose1();//当前的窗体关闭
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TeacherFrame frame = new TeacherFrame();
+					frame.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});		
+	}
+
+	private void dispose1() {
+		frame.dispose();
+		
+	}
+
 	private void fillTable() {
 		TableModel jmodel=table.getModel();
 		DefaultTableModel model=(DefaultTableModel)jmodel;
