@@ -39,9 +39,11 @@ public class LoginFrame extends JFrame {
 	private JPanel contentPane;
 	public static JTextField stupNameText;
 	private JTextField passwordText;
-	
+	public static boolean bool;
 	 private JRadioButton rbtn1;
 	 private JRadioButton rbtn2;
+	 public  static Student user;
+	 public  static Teacher tea;
 	/**
 	 * Launch the application.
 	 */
@@ -182,11 +184,7 @@ public class LoginFrame extends JFrame {
 		lblNewLabel_4.setIcon(new ImageIcon(LoginFrame.class.getResource("/images/bg.jpg")));
 		lblNewLabel_4.setBounds(0, 0, 499, 353);
 		contentPane.add(lblNewLabel_4);
-		
 	
-		
-        
-		
 		
 	}
 
@@ -207,8 +205,8 @@ public class LoginFrame extends JFrame {
 		}
 		
 	
-    	Student user=new Student(userName,password);
-    	Teacher tea=new Teacher(teaName,password);
+        user=new Student(userName,password);
+    	tea=new Teacher(teaName,password);
     	Connection con=null;
     	try {
     		con=JdbcUtils.getConnection();
@@ -217,7 +215,7 @@ public class LoginFrame extends JFrame {
 			
 			if(null!=currentUser&&rbtn1.isSelected()) {
 				JOptionPane.showMessageDialog(null, "登录成功！");			   
-		
+				bool = true;
 				//登录跳转至学生界面
 		    	this.dispose();//当前的窗体关闭
 				EventQueue.invokeLater(new Runnable() {
@@ -233,7 +231,8 @@ public class LoginFrame extends JFrame {
 							
 			}				
 			else if(null!=currentUser1&&rbtn2.isSelected()) {
-				JOptionPane.showMessageDialog(null, "登录成功！");	  			
+				JOptionPane.showMessageDialog(null, "登录成功！");	  	
+				bool = false;
 				//登录跳转至教师界面
 		    	this.dispose();//当前的窗体关闭
 				EventQueue.invokeLater(new Runnable() {
@@ -258,8 +257,6 @@ public class LoginFrame extends JFrame {
   	
 	}
 
-    
-   
 
 	//注册页面的跳转
 	protected void toLogon(ActionEvent e) {
@@ -276,10 +273,7 @@ public class LoginFrame extends JFrame {
 			}
 		});
 		
-    	
-    	
-    	
-    	
+  	
 	}
 
 	//关闭窗体

@@ -6,6 +6,7 @@ public class Course {
 	private String morning;
 	private String afternoon;
 	private String evening;
+	private Integer classid;
 	public Course(Integer id, String week, String morning, String afternoon, String evening) {
 		super();
 		this.id = id;
@@ -13,6 +14,21 @@ public class Course {
 		this.morning = morning;
 		this.afternoon = afternoon;
 		this.evening = evening;
+	}
+	public Course(Integer id, String week, String morning, String afternoon, String evening, Integer classid) {
+		super();
+		this.id = id;
+		this.week = week;
+		this.morning = morning;
+		this.afternoon = afternoon;
+		this.evening = evening;
+		this.classid = classid;
+	}
+	public Integer getClassid() {
+		return classid;
+	}
+	public void setClassid(Integer classid) {
+		this.classid = classid;
 	}
 	public String getEvening() {
 		return evening;
@@ -51,7 +67,7 @@ public class Course {
 	@Override
 	public String toString() {
 		return "Course [id=" + id + ", week=" + week + ", morning=" + morning + ", afternoon=" + afternoon
-				+ ", evening=" + evening + "]";
+				+ ", evening=" + evening + ", classid=" + classid + "]";
 	}
 	
 	

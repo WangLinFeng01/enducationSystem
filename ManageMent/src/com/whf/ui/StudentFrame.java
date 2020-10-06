@@ -15,9 +15,10 @@ import java.awt.Font;
 public class StudentFrame extends JFrame{
 
 	JFrame frame;
-	private JTextField textField;
+	private JTextField textField11;
+	private JTextField textField22;
 	private JTextField stupNameText;
-
+  
 	/**
 	 * Launch the application.
 	 */
@@ -56,17 +57,22 @@ public class StudentFrame extends JFrame{
 		lblNewLabel.setBounds(129, 49, 66, 15);
 		frame.getContentPane().add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("SimSun", Font.BOLD, 20));
-		textField.setEditable(false);
-		textField.setBounds(193, 40, 109, 33);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		textField11 = new JTextField();
+		textField11.setFont(new Font("SimSun", Font.BOLD, 20));
+		textField11.setEditable(false);
+		textField11.setBounds(193, 40, 109, 33);
+		frame.getContentPane().add(textField11);
+		textField11.setColumns(10);
 		String l1=LoginFrame.stupNameText.getText();
-		textField.setText(l1);
-	    textField.setBorder(null);
+		textField11.setText(l1);
+	    textField11.setBorder(null);
 		
 		JButton btnNewButton = new JButton("\u67E5\u770B\u8BFE\u7A0B\u8868");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				toJfCourse(e);
+			}
+		});
 		btnNewButton.setBounds(96, 171, 117, 33);
 		frame.getContentPane().add(btnNewButton);
 		
@@ -131,6 +137,23 @@ public class StudentFrame extends JFrame{
 		frame.getContentPane().add(btnNewButton_1_1_1_2);
 	}
 
+	//跳转至课程表
+	protected void toJfCourse(ActionEvent e) {
+		System.out.println("ddddd");
+		this.dispose1();//当前的窗体关闭
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JfCourse frame = new JfCourse();
+					frame.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+	}
+
 	protected void toJ_ExamingUI(ActionEvent e) {
 		this.dispose1();//当前的窗体关闭
 		EventQueue.invokeLater(new Runnable() {
@@ -180,8 +203,7 @@ public class StudentFrame extends JFrame{
 	}
 
 	private void dispose1() {
-frame.dispose();
-		
+		frame.dispose();
 	}
 
 }

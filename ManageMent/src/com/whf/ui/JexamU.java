@@ -103,7 +103,7 @@ public class JexamU {
 				jump();//跳转事件
 			}
 		});
-		btnNewButton_1.setBounds(451, 83, 100, 23);
+		btnNewButton_1.setBounds(307, 35, 100, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("\u8BD5\u5377Id\u8BF4\u660E: 1\u5BF9\u5E94\u7740\u6570\u5B66, 2\u5BF9\u5E94\u7740\u8BED\u6587  , 3\u5BF9\u5E94\u7740\u82F1\u8BED");
@@ -119,11 +119,43 @@ public class JexamU {
 		});
 		btnNewButton_2.setBounds(451, 35, 100, 23);
 		frame.getContentPane().add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("\u8FD4\u56DE");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				toStudent(e);
+			}
+		});
+		btnNewButton_3.setBounds(463, 87, 74, 23);
+		frame.getContentPane().add(btnNewButton_3);
 		//表的初始化
 		fillTable();
 	}
 
-	//将数学的表格中的内容拿出来
+	protected void toStudent(ActionEvent e) {
+		//登录跳转至学生界面
+    	this.dispose();//当前的窗体关闭
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					StudentFrame frame = new StudentFrame();
+					frame.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});	
+		
+		
+		
+	}
+
+	private void dispose() {
+		frame.dispose();
+		
+	}
+
+		//将数学的表格中的内容拿出来
 		private void fillTable() {
 			TableModel jmodel=table.getModel();
 			DefaultTableModel model=(DefaultTableModel)jmodel;
@@ -245,5 +277,4 @@ public class JexamU {
 				}
 			});
 		}
-	
 }

@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TeacherFrame extends JFrame {
 	
@@ -59,6 +61,14 @@ public class TeacherFrame extends JFrame {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("\u67E5\u770B\u8BFE\u8868\u4FE1\u606F");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+		
+		});
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				toJfCourse(e);
+			}
+		});
 		btnNewButton.setIcon(new ImageIcon(TeacherFrame.class.getResource("/images/course.png")));
 		btnNewButton.setBounds(90, 143, 137, 32);
 		frame.getContentPane().add(btnNewButton);
@@ -107,6 +117,11 @@ public class TeacherFrame extends JFrame {
 		frame.getContentPane().add(btnNewButton_1_3);
 		
 		JButton btnNewButton_1_4 = new JButton("\u8BBE\u7F6E\u8003\u5377");
+		btnNewButton_1_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				toQuestionSetting(e);
+			}
+		});
 		btnNewButton_1_4.setBounds(300, 200, 141, 32);
 		frame.getContentPane().add(btnNewButton_1_4);
 		
@@ -121,7 +136,39 @@ public class TeacherFrame extends JFrame {
 	}
 
 
+		protected void toQuestionSetting(ActionEvent e) {
+			this.dispose1();//当前的窗体关闭
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						QuestionSettingFrame frame = new QuestionSettingFrame();
+						frame.frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		
+	}
 
+
+		protected void toJfCourse(ActionEvent e) {
+			this.dispose1();//当前的窗体关闭
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						JfCourse frame = new JfCourse();
+						frame.frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		
+	}
+
+
+//跳转至疑问反馈
 	protected void toQueryfeedback(ActionEvent e) {
 		this.dispose1();//当前的窗体关闭
 		EventQueue.invokeLater(new Runnable() {
@@ -138,7 +185,7 @@ public class TeacherFrame extends JFrame {
 	}
 
 
-
+//跳转至课程进度表
 	protected void toJ_scheduleUI(ActionEvent e) {
 		this.dispose();//当前的窗体关闭
 		EventQueue.invokeLater(new Runnable() {
@@ -155,9 +202,9 @@ public class TeacherFrame extends JFrame {
 	}
 
 
-
+//跳转至随机点名界面
 	protected void toRandomRollCallUI(ActionEvent e) {
-		//登录跳转至学生点名界面
+		
     	this.dispose();//当前的窗体关闭
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -175,7 +222,7 @@ public class TeacherFrame extends JFrame {
 	}
 
 
-
+//跳转至主界面
 	protected void goBack(ActionEvent e) {
 		
 		this.dispose1();//当前的窗体关闭

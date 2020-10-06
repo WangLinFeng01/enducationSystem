@@ -15,12 +15,14 @@ import com.whf.util.JdbcUtils;
 
 public class CourseDaoImpl implements CourseDao{
 	//课程表的查询
-	public List<Course> course_query() {
-		String sql="select * from course ";
+	public List<Course> course_query(int classid) {
+		String sql="select * from course where classid=?";
 	    List<Course> list=new ArrayList<Course>();
 		try {
 			Connection  conn=JdbcUtils.getConnection();
+			
 			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setInt(1, classid);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				//遍历查询到的结果集并创建Course对象
@@ -47,7 +49,7 @@ public class CourseDaoImpl implements CourseDao{
 	//课程表的修改
 	@Override
 	public List<Course> course_update(Course course) {
-		String sql="update course set week=?,morning=?,afternoon=?,evening=? where id=?";
+		String sql="update course set week=?,morning=?,afternoon=?,evening=? where id=? and classid=?";
 		try {
 			Connection conn=JdbcUtils.getConnection();
 			PreparedStatement ps=conn.prepareStatement(sql);
@@ -57,8 +59,9 @@ public class CourseDaoImpl implements CourseDao{
 			ps.setString(3,course.getAfternoon());
 			ps.setString(4,course.getEvening());
 			ps.setInt(5,course.getId());
+			ps.setInt(6, course.getClassid());
 			ps.executeUpdate();
-			conn.close();
+		    conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

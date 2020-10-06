@@ -7,7 +7,7 @@ import com.whf.pojo.Course;
 
 
 public interface CourseDao {
-	public List<Course> course_query();
+	public List<Course> course_query(int classid);
 	public List<Course> course_update(Course course);
 
 }

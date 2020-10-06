@@ -42,8 +42,8 @@ public class J_ExamingUI {
 	public String nameStu = "凤眼夋";
 	
 	public static Integer examId;//科目ID
-	public  Integer paperId;//科目ID
-	public Integer score;//成绩
+	public  Integer paperId;//试卷ID
+	public Integer score=0;//成绩
 	public Date insertTime;//插入时间
 	//(1)实现将数据库中的题目信息传到textAre中
 
@@ -91,7 +91,11 @@ public class J_ExamingUI {
 		JButton btnNewButton_1 = new JButton("提交试卷");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				score = showScore();//拿到分数;
+				if(score == 0) {
+					score = 0;
+				}else {
+					score = showScore();//拿到分数;					
+				}
 				transferTable();
 				btnNewButton_1.setEnabled(false);
 				
@@ -231,7 +235,7 @@ public class J_ExamingUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StudentFrame frame = new StudentFrame();
+					JexamU frame = new JexamU();
 					frame.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -300,6 +304,7 @@ public class J_ExamingUI {
 		//成绩id,加入时间,最高成绩,试卷id,血
 		String sql="insert into t_scoer value (null,?,?,?,?,?)";
 		Object[] obj = {insertTime,score,examId,stuId,paperId};
+		System.out.println("插入成功");
 		new QueryRunner().execute(sql, obj);
 	}
 }

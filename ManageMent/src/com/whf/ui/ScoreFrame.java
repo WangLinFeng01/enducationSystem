@@ -78,14 +78,13 @@ public class ScoreFrame extends JFrame {
 		String l1=LoginFrame.stupNameText.getText();
 		textField.setText(l1);
 		
-		JLabel lblNewLabel_1 = new JLabel("\u79D1\u76EE\uFF1A");
-		lblNewLabel_1.setBounds(74, 120, 54, 15);
-		frame.getContentPane().add(lblNewLabel_1);
-		
 		textField_2 = new JTextField();
-		textField_2.setBounds(126, 177, 66, 21);
+		textField_2.setBounds(142, 122, 66, 21);
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
+		
+		
+		
 		
 		btnNewButton = new JButton("\u8FD4\u56DE");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -120,15 +119,8 @@ public class ScoreFrame extends JFrame {
 				
 			}
 		});
-		btnNewButton_1.setBounds(51, 176, 66, 22);
+		btnNewButton_1.setBounds(62, 122, 66, 21);
 		frame.getContentPane().add(btnNewButton_1);
-		
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel
-		(new String[] {"\u6570\u5B66", "java\u57FA\u7840"}));	
-		comboBox.setBounds(120, 117, 82, 21);
-		frame.getContentPane().add(comboBox);
 
 	}
 

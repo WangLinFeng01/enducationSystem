@@ -41,6 +41,31 @@ public class Question {
 	}
 
 
+	@Override
+	public String toString() {
+		return "Question [answer=" + answer + ", joinTime=" + joinTime + ", optionA=" + optionA + ", optionB=" + optionB
+				+ ", optionC=" + optionC + ", optionD=" + optionD + ", optionE=" + optionE + ", subText=" + subText
+				+ ", type=" + type + ", subjectId=" + subjectId + ", paperId=" + paperId + "]";
+	}
+
+
+	public Question(String answer, Date joinTime, String optionA, String optionB, String optionC, String optionD,
+			String optionE, String subText, String type, Integer subjectId, Integer paperId) {
+		super();
+		this.answer = answer;
+		this.joinTime = joinTime;
+		this.optionA = optionA;
+		this.optionB = optionB;
+		this.optionC = optionC;
+		this.optionD = optionD;
+		this.optionE = optionE;
+		this.subText = subText;
+		this.type = type;
+		this.subjectId = subjectId;
+		this.paperId = paperId;
+	}
+
+
 	public Question(String answer, String subText) {
 		super();
 		this.answer = answer;

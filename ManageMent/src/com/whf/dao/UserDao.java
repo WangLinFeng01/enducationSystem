@@ -108,9 +108,6 @@ public class UserDao extends BaseDaoImpl <Student> {
         	BufferedWriter write=null;
         	try {
         		write= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
-        		String ss = "a、b是数轴上原点两旁的点，则它们表示的两个有理数是（?）?\r\nA、互为相反数\r\nB、绝对值相等\r\nC、是符号不同的数\r\nC、是符号不同的数\r\nD、都是负数\r\nnull\r\n2、有";
-        		System.out.println(ss+"结束");
-        		System.out.println(s);
         		write.write(s);
         		write.newLine();
         		write.flush();
