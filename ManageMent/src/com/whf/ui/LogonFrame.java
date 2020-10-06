@@ -23,6 +23,7 @@ import com.mysql.jdbc.Connection;
 import com.whf.dao.UserDao;
 import com.whf.pojo.Student;
 import com.whf.util.StringUtil;
+import javax.swing.ImageIcon;
 
 public class LogonFrame extends JFrame {
 
@@ -51,6 +52,7 @@ public class LogonFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public LogonFrame() {
+		setResizable(false);
 		
 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -96,6 +98,7 @@ public class LogonFrame extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("\u8FD4\u56DE");
+		btnNewButton_1.setIcon(new ImageIcon(LogonFrame.class.getResource("/images/goBack.png")));
 		btnNewButton_1.setBounds(217, 325, 93, 23);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -106,6 +109,11 @@ public class LogonFrame extends JFrame {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 		});
 		contentPane.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(LogonFrame.class.getResource("/images/zhuce.bg.jpg")));
+		lblNewLabel_2.setBounds(0, 0, 399, 420);
+		contentPane.add(lblNewLabel_2);
 	}
 
 	//注册事件处理

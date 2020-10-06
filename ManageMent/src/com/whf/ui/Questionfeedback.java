@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Questionfeedback extends JFrame{
     
@@ -65,6 +66,7 @@ public class Questionfeedback extends JFrame{
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setForeground(Color.BLACK);
 		frame.setFont(new Font("Copperplate Gothic Light", Font.BOLD | Font.ITALIC, 12));
 		frame.setTitle("\u5B66\u751F\u7591\u95EE\u53CD\u9988");
@@ -130,6 +132,7 @@ public class Questionfeedback extends JFrame{
 		textField_1.setColumns(10);
 		
 		btnNewButton_1 = new JButton("\u8FD4\u56DE");
+		btnNewButton_1.setIcon(new ImageIcon(Questionfeedback.class.getResource("/images/goBack.png")));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				toStudent(e);

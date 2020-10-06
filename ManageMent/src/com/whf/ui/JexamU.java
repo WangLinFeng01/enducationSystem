@@ -24,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import javax.swing.ImageIcon;
 
 public class JexamU {
 
@@ -121,12 +122,13 @@ public class JexamU {
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("\u8FD4\u56DE");
+		btnNewButton_3.setIcon(new ImageIcon(JexamU.class.getResource("/images/goBack.png")));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				toStudent(e);
 			}
 		});
-		btnNewButton_3.setBounds(463, 87, 74, 23);
+		btnNewButton_3.setBounds(451, 86, 85, 25);
 		frame.getContentPane().add(btnNewButton_3);
 		//表的初始化
 		fillTable();

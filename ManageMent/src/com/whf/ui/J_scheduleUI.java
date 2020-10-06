@@ -26,6 +26,7 @@ import com.whf.dao.T_scheduleDao;
 import com.whf.dao.impl.T_scheduleDaoImpl;
 import com.whf.pojo.T_schedule;
 import com.whf.util.QueryRunner;
+import javax.swing.ImageIcon;
 
 public class J_scheduleUI {
 
@@ -139,13 +140,14 @@ public class J_scheduleUI {
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JButton btnNewButton_2 = new JButton("返回主界面");
+		btnNewButton_2.setIcon(new ImageIcon(J_scheduleUI.class.getResource("/images/goBack.png")));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				toTeacher(arg0);
 				
 			}
 		});
-		btnNewButton_2.setBounds(90, 303, 110, 23);
+		btnNewButton_2.setBounds(90, 302, 122, 24);
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JMenuBar menuBar = new JMenuBar();

@@ -29,6 +29,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class J_ExamingUI {
 	//提交按钮返回的是学生主界面;以及将成绩录入到数据库中
@@ -43,7 +44,7 @@ public class J_ExamingUI {
 	
 	public static Integer examId;//科目ID
 	public  Integer paperId;//试卷ID
-	public Integer score=0;//成绩
+	public static Integer score=0;//成绩
 	public Date insertTime;//插入时间
 	//(1)实现将数据库中的题目信息传到textAre中
 
@@ -217,6 +218,7 @@ public class J_ExamingUI {
 				lblNewLabel_6.setText("欢迎你! 考生"+nameStu);
 				
 				JButton btnNewButton_4 = new JButton("\u8FD4\u56DE");
+				btnNewButton_4.setIcon(new ImageIcon(J_ExamingUI.class.getResource("/images/goBack.png")));
 				btnNewButton_4.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						toStudent(e);

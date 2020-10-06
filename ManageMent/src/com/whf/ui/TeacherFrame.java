@@ -50,14 +50,16 @@ public class TeacherFrame extends JFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setTitle("\u6559\u5E08\u7BA1\u7406\u754C\u9762");
-		frame.setBounds(100, 100, 567, 421);
+		frame.setBounds(100, 100, 511, 346);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("\u6B22\u8FCE\u60A8\uFF1A");
 		lblNewLabel.setFont(new Font("SimSun", Font.BOLD, 15));
 		lblNewLabel.setBounds(121, 43, 64, 18);
+		
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("\u67E5\u770B\u8BFE\u8868\u4FE1\u606F");
@@ -70,7 +72,7 @@ public class TeacherFrame extends JFrame {
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(TeacherFrame.class.getResource("/images/course.png")));
-		btnNewButton.setBounds(90, 143, 137, 32);
+		btnNewButton.setBounds(70, 103, 141, 32);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("\u5B66\u751F\u70B9\u540D");
@@ -80,7 +82,7 @@ public class TeacherFrame extends JFrame {
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon(TeacherFrame.class.getResource("/images/student.png")));
-		btnNewButton_1.setBounds(300, 143, 141, 32);
+		btnNewButton_1.setBounds(288, 103, 141, 32);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		textField = new JTextField();
@@ -95,7 +97,7 @@ public class TeacherFrame extends JFrame {
 		textField.setBorder(null);
 		
 		JButton btnNewButton_1_1 = new JButton("\u5B66\u751F\u6210\u7EE9\u67E5\u8BE2");
-		btnNewButton_1_1.setBounds(300, 258, 141, 32);
+		btnNewButton_1_1.setBounds(288, 213, 141, 32);
 		frame.getContentPane().add(btnNewButton_1_1);
 		
 		JButton btnNewButton_1_2 = new JButton("\u67E5\u770B\u8BFE\u7A0B\u8FDB\u5EA6");
@@ -104,7 +106,7 @@ public class TeacherFrame extends JFrame {
 				toJ_scheduleUI(e);
 			}
 		});
-		btnNewButton_1_2.setBounds(90, 200, 141, 32);
+		btnNewButton_1_2.setBounds(70, 155, 141, 32);
 		frame.getContentPane().add(btnNewButton_1_2);
 		
 		JButton btnNewButton_1_3 = new JButton("\u5B66\u751F\u7591\u70B9\u53CD\u9988");
@@ -113,7 +115,7 @@ public class TeacherFrame extends JFrame {
 				toQueryfeedback(e);
 			}
 		});
-		btnNewButton_1_3.setBounds(90, 258, 141, 32);
+		btnNewButton_1_3.setBounds(70, 213, 141, 32);
 		frame.getContentPane().add(btnNewButton_1_3);
 		
 		JButton btnNewButton_1_4 = new JButton("\u8BBE\u7F6E\u8003\u5377");
@@ -122,17 +124,27 @@ public class TeacherFrame extends JFrame {
 				toQuestionSetting(e);
 			}
 		});
-		btnNewButton_1_4.setBounds(300, 200, 141, 32);
+		btnNewButton_1_4.setBounds(288, 155, 141, 32);
 		frame.getContentPane().add(btnNewButton_1_4);
 		
 		JButton btnNewButton_1_1_2 = new JButton("\u8FD4\u56DE\u767B\u5F55");
+		btnNewButton_1_1_2.setIcon(new ImageIcon(TeacherFrame.class.getResource("/images/goBack.png")));
 		btnNewButton_1_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				goBack(e);
 			}
 		});
-		btnNewButton_1_1_2.setBounds(90, 317, 141, 32);
+		btnNewButton_1_1_2.setBounds(288, 266, 141, 32);
 		frame.getContentPane().add(btnNewButton_1_1_2);
+		
+		JButton btnNewButton_1_1_2_1 = new JButton("\u8868\u683C\u5BFC\u51FA");
+		btnNewButton_1_1_2_1.setBounds(70, 266, 141, 32);
+		frame.getContentPane().add(btnNewButton_1_1_2_1);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(TeacherFrame.class.getResource("/images/tea.bg3.jpg")));
+		lblNewLabel_1.setBounds(0, 0, 500, 313);
+		frame.getContentPane().add(lblNewLabel_1);
 	}
 
 

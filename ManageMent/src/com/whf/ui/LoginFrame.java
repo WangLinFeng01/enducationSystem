@@ -182,7 +182,8 @@ public class LoginFrame extends JFrame {
 		
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setIcon(new ImageIcon(LoginFrame.class.getResource("/images/bg.jpg")));
-		lblNewLabel_4.setBounds(0, 0, 499, 353);
+		lblNewLabel_4.setBounds(0, 0, 498, 351);
+	
 		contentPane.add(lblNewLabel_4);
 	
 		

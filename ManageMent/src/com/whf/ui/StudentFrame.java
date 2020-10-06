@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class StudentFrame extends JFrame{
 
@@ -47,8 +48,9 @@ public class StudentFrame extends JFrame{
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setTitle("\u5B66\u751F\u4E3B\u754C\u9762");
-		frame.setBounds(100, 100, 568, 408);
+		frame.setBounds(100, 100, 510, 345);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -73,7 +75,7 @@ public class StudentFrame extends JFrame{
 				toJfCourse(e);
 			}
 		});
-		btnNewButton.setBounds(96, 171, 117, 33);
+		btnNewButton.setBounds(96, 140, 117, 33);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("\u7591\u95EE\u53CD\u9988");
@@ -99,7 +101,7 @@ public class StudentFrame extends JFrame{
 				
 			}
 		});
-		btnNewButton_1.setBounds(279, 171, 109, 33);
+		btnNewButton_1.setBounds(287, 140, 109, 33);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_1_1 = new JButton("\u9009\u62E9\u8BD5\u5377");
@@ -108,12 +110,14 @@ public class StudentFrame extends JFrame{
 				toJ_ExamingUI(e);
 			}
 		});
-		btnNewButton_1_1.setBounds(96, 231, 117, 33);
+		btnNewButton_1_1.setBounds(96, 199, 117, 33);
 		frame.getContentPane().add(btnNewButton_1_1);
 		
 		JButton btnNewButton_1_1_1 = new JButton("\u67E5\u8BE2\u8003\u8BD5\u6210\u7EE9");
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				toSelectedScore(e);
+				
 			}
 		});
 		btnNewButton_1_1_1.addMouseListener(new MouseAdapter() {
@@ -124,17 +128,32 @@ public class StudentFrame extends JFrame{
 				
 			}
 		});
-		btnNewButton_1_1_1.setBounds(279, 231, 117, 33);
+		btnNewButton_1_1_1.setBounds(287, 199, 117, 33);
 		frame.getContentPane().add(btnNewButton_1_1_1);
 		
 		JButton btnNewButton_1_1_1_2 = new JButton("\u8FD4\u56DE\u767B\u5F55");
+		btnNewButton_1_1_1_2.setIcon(new ImageIcon(StudentFrame.class.getResource("/images/goBack.png")));
 		btnNewButton_1_1_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				goBack(e);
 			}
 		});
-		btnNewButton_1_1_1_2.setBounds(96, 296, 117, 33);
+		btnNewButton_1_1_1_2.setBounds(96, 255, 117, 33);
 		frame.getContentPane().add(btnNewButton_1_1_1_2);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(StudentFrame.class.getResource("/images/stu.bg3.jpg")));
+		lblNewLabel_1.setBounds(0, 0, 500, 313);
+		frame.getContentPane().add(lblNewLabel_1);
+	}
+
+	protected void toSelectedScore(ActionEvent e) {
+		
+		
+		
+		
+		
+		
 	}
 
 	//跳转至课程表

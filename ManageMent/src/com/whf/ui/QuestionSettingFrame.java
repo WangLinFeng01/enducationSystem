@@ -22,6 +22,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Window;
+import javax.swing.ImageIcon;
 
 public class QuestionSettingFrame extends JFrame {
 
@@ -183,6 +184,7 @@ public class QuestionSettingFrame extends JFrame {
 		frame.getContentPane().add(resetBtn);
 		
 		exitBtn = new JButton("\u9000\u51FA");
+		exitBtn.setIcon(new ImageIcon(QuestionSettingFrame.class.getResource("/images/goBack.png")));
 		exitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//跳转至教师界面

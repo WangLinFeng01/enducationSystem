@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -24,6 +25,7 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JDesktopPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
 
 public class ScoreFrame extends JFrame {
 
@@ -61,13 +63,15 @@ public class ScoreFrame extends JFrame {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setTitle("\u5B66\u751F\u6210\u7EE9\u67E5\u8BE2");
 		frame.setBounds(100, 100, 479, 330);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("\u7528\u6237\u540D:");
-		lblNewLabel.setBounds(74, 60, 54, 15);
+		lblNewLabel.setFont(new Font("SimSun", Font.BOLD, 15));
+		lblNewLabel.setBounds(54, 56, 66, 23);
 		frame.getContentPane().add(lblNewLabel);
 		
 		textField = new JTextField();
@@ -79,10 +83,11 @@ public class ScoreFrame extends JFrame {
 		textField.setText(l1);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(142, 122, 66, 21);
+		textField_2.setEditable(false);
+		textField_2.setBounds(126, 122, 66, 21);
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
-		
+		textField_2.setText((J_ExamingUI.score).toString());
 		
 		
 		
@@ -99,29 +104,16 @@ public class ScoreFrame extends JFrame {
 		btnNewButton.setBounds(332, 237, 93, 23);
 		frame.getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("\u67E5\u8BE2");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Connection con=null;
-				try {
-					con=JdbcUtils.getConnection();
-				} catch (SQLException e1) {
-				
-					e1.printStackTrace();
-				}
-    			String sql = "select score from course where courseName=?";
-    			try {
-					PreparedStatement ps = con.prepareStatement(sql);
-				} catch (SQLException e1) {
-				
-					e1.printStackTrace();
-				}
-				
-			}
-		});
-		btnNewButton_1.setBounds(62, 122, 66, 21);
-		frame.getContentPane().add(btnNewButton_1);
+		JLabel lblNewLabel_1 = new JLabel("\u5206\u6570\uFF1A");
+		lblNewLabel_1.setFont(new Font("SimSun", Font.BOLD, 15));
+		lblNewLabel_1.setBounds(69, 122, 66, 21);
+		frame.getContentPane().add(lblNewLabel_1);
 
+	}
+
+	private String toString(Integer score) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	protected void goBack11(ActionEvent e) {
