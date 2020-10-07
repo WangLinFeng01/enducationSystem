@@ -67,7 +67,7 @@ public class J_scheduleUI {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("数学进度图");
-		frame.setBounds(100, 100, 598, 394);
+		frame.setBounds(400, 170, 598, 394);
 		frame.getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();

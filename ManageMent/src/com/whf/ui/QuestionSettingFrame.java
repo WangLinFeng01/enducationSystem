@@ -77,7 +77,7 @@ public class QuestionSettingFrame extends JFrame {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("ËÎÌו", Font.PLAIN, 17));
-		frame.setBounds(100, 100, 524, 548);
+		frame.setBounds(400, 102, 524, 548);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -130,7 +130,8 @@ public class QuestionSettingFrame extends JFrame {
 		paperId.setColumns(10);
 		
 		JButton addBtn = new JButton("\u6DFB\u52A0");
-		addBtn.setBounds(78, 466, 93, 23);
+		addBtn.setIcon(new ImageIcon(QuestionSettingFrame.class.getResource("/images/add.png")));
+		addBtn.setBounds(78, 458, 93, 31);
 		frame.getContentPane().add(addBtn);
 		
 		subjectId = new JComboBox();
@@ -180,7 +181,8 @@ public class QuestionSettingFrame extends JFrame {
 		frame.getContentPane().add(lblNewLabel_10);
 		
 		resetBtn = new JButton("\u91CD\u7F6E");
-		resetBtn.setBounds(204, 466, 93, 23);
+		resetBtn.setIcon(new ImageIcon(QuestionSettingFrame.class.getResource("/images/chongzi1.png")));
+		resetBtn.setBounds(211, 458, 93, 31);
 		frame.getContentPane().add(resetBtn);
 		
 		exitBtn = new JButton("\u9000\u51FA");
@@ -206,7 +208,7 @@ public class QuestionSettingFrame extends JFrame {
 				
 			}
 		});
-		exitBtn.setBounds(343, 466, 93, 23);
+		exitBtn.setBounds(343, 458, 93, 31);
 		frame.getContentPane().add(exitBtn);
 		
 		resetBtn.addActionListener(new ActionListener() {

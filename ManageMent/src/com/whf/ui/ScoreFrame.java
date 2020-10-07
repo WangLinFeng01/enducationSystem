@@ -6,7 +6,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import com.whf.pojo.Student;
+import com.whf.pojo.T_schedule;
+import com.whf.pojo.T_score;
+import com.whf.util.BeanListResultSetHandler;
 import com.whf.util.JdbcUtils;
+import com.whf.util.QueryRunner;
 
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
@@ -16,17 +21,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Vector;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JDesktopPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class ScoreFrame extends JFrame {
 
@@ -35,6 +47,9 @@ public class ScoreFrame extends JFrame {
 	private JTextField textField_2;
 	private JButton btnNewButton;
 	private JTextField stupNameText;
+	private JTable table;
+	private JTextField textField_1;
+	String l1;//得到姓名
 	/**
 	 * Launch the application.
 	 */
@@ -73,23 +88,17 @@ public class ScoreFrame extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("\u7528\u6237\u540D:");
 		lblNewLabel.setFont(new Font("SimSun", Font.BOLD, 15));
-		lblNewLabel.setBounds(54, 56, 66, 23);
+		lblNewLabel.setBounds(10, 10, 66, 23);
 		frame.getContentPane().add(lblNewLabel);
 		
 		textField = new JTextField();
 		textField.setEditable(false);
-		textField.setBounds(126, 57, 66, 21);
+		textField.setBounds(75, 11, 66, 21);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
-		String l1=LoginFrame.stupNameText.getText();
+		l1=LoginFrame.stupNameText.getText();
 		textField.setText(l1);
-		
-		textField_2 = new JTextField();
-		textField_2.setEditable(false);
-		textField_2.setBounds(126, 122, 66, 21);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
-		textField_2.setText((J_ExamingUI.score).toString());
+
 		
 		
 		
@@ -104,12 +113,47 @@ public class ScoreFrame extends JFrame {
 			
 			
 		});
-		btnNewButton.setBounds(332, 237, 93, 23);
+		btnNewButton.setBounds(339, 253, 93, 23);
 		frame.getContentPane().add(btnNewButton);
 		
-		JLabel lblNewLabel_1 = new JLabel("\u5206\u6570\uFF1A");
-		lblNewLabel_1.setFont(new Font("SimSun", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(69, 122, 66, 21);
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(47, 58, 384, 179);
+		frame.getContentPane().add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"\u79D1\u76EEID","\u6210\u7EE9"
+			}
+		));
+		scrollPane.setViewportView(table);
+		
+		
+		
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(258, 25, 82, 21);
+		frame.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnNewButton_1 = new JButton("\u67E5\u8BE2");
+		btnNewButton_1.setIcon(new ImageIcon(ScoreFrame.class.getResource("/images/enter.png")));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(textField_1.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "科目ID不能为空！");		
+				}
+				fillTable();
+			}
+		});
+		btnNewButton_1.setBounds(350, 24, 82, 23);
+		frame.getContentPane().add(btnNewButton_1);
+		
+		JLabel lblNewLabel_1 = new JLabel("\u79D1\u76EEID\uFF1A");
+		lblNewLabel_1.setBounds(201, 28, 48, 15);
 		frame.getContentPane().add(lblNewLabel_1);
 
 	}
@@ -118,6 +162,37 @@ public class ScoreFrame extends JFrame {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	//查询根据页面上的学生姓名得到学生表中的学生id
+	
+	
+	//查询分数表中的内容
+	public List<T_score> queryT_score(){
+		String sql = "select * from t_scoer where paperId = ?";
+		Integer id = Integer.parseInt(textField_1.getText());
+		Object[] params= {id};
+		List<T_score> list=(List<T_score>) QueryRunner.query(sql, params, new BeanListResultSetHandler<T_score>(T_score.class));
+		return list;
+	}
+	
+	//将数学的表格中的内容拿出来
+	private void fillTable() {
+		TableModel jmodel=table.getModel();
+		DefaultTableModel model=(DefaultTableModel)jmodel;
+		//清空一下表中的数据
+		model.setRowCount(0);
+		//拿到放在结果集中的数据
+		List<T_score> datas=queryT_score();
+		for(T_score p:datas) {
+			Vector lineData=new Vector();
+			lineData.add(p.getPaperId());
+			lineData.add(p.getScore());
+			model.addRow(lineData);
+		}
+		System.out.println("刷新成功");
+		//设置一下table上的鼠标点击事件
+	}
+	
+	
 
 	protected void goBack11(ActionEvent e) {
 		this.dispose1();//当前的窗体关闭

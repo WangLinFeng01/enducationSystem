@@ -52,7 +52,7 @@ public class RandomRollCallUI {
 	 void initialize() {
 		frame = new JFrame("随机点名界面");
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
-		frame.setBounds(400, 120, 671, 510);
+		frame.setBounds(360, 120, 671, 510);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
