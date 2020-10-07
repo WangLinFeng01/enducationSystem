@@ -40,8 +40,7 @@ public class J_ExamingUI {
 	//设置一个装从JexamUI传递来的试卷Id;用static修饰保证是唯一的,且要实现多人考试,要用到事务回滚
 	//留的两个接口
 	public  Integer stuId = 1;//学生id
-	public String nameStu = "凤眼夋";
-	
+	public String nameStu = LoginFrame.stupNameText.getText();//学生的名字
 	public static Integer examId;//科目ID
 	public  Integer paperId;//试卷ID
 	public static Integer score=0;//成绩
@@ -98,8 +97,7 @@ public class J_ExamingUI {
 					score = showScore();//拿到分数;					
 				}
 				transferTable();
-				btnNewButton_1.setEnabled(false);
-				
+				btnNewButton_1.setEnabled(false);				
 //				System.exit(0); // 退出
 			}
 
@@ -306,7 +304,7 @@ public class J_ExamingUI {
 		//成绩id,加入时间,最高成绩,试卷id,血
 		String sql="insert into t_scoer value (null,?,?,?,?,?)";
 		Object[] obj = {insertTime,score,examId,stuId,paperId};
-		System.out.println("插入成功");
+		JOptionPane.showMessageDialog(null, "提交成功");
 		new QueryRunner().execute(sql, obj);
 	}
 }
