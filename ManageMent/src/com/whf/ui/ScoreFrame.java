@@ -153,7 +153,8 @@ public class ScoreFrame extends JFrame {
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("\u79D1\u76EEID\uFF1A");
-		lblNewLabel_1.setBounds(201, 28, 48, 15);
+		lblNewLabel_1.setFont(new Font("SimSun", Font.BOLD, 12));
+		lblNewLabel_1.setBounds(204, 26, 55, 18);
 		frame.getContentPane().add(lblNewLabel_1);
 
 	}

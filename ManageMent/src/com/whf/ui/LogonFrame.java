@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 import com.mysql.jdbc.Connection;
 import com.whf.dao.UserDao;
 import com.whf.pojo.Student;
+import com.whf.util.QueryRunner;
 import com.whf.util.StringUtil;
 import javax.swing.ImageIcon;
 
@@ -74,12 +75,12 @@ public class LogonFrame extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		userNameText = new JTextField();
-		userNameText.setBounds(131, 127, 142, 26);
+		userNameText.setBounds(131, 148, 142, 26);
 		contentPane.add(userNameText);
 		userNameText.setColumns(10);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("\u8BF7\u8F93\u5165\u5BC6\u7801\uFF1A");
-		lblNewLabel_1_1_1.setBounds(131, 203, 112, 26);
+		lblNewLabel_1_1_1.setBounds(131, 194, 112, 26);
 		lblNewLabel_1_1_1.setFont(new Font("SimSun", Font.BOLD, 15));
 		contentPane.add(lblNewLabel_1_1_1);
 		
@@ -142,23 +143,21 @@ public class LogonFrame extends JFrame {
 	    	userNameText.setText("");
 	    	return;
 		}
-		
-		
-    	//添加数据----获取的是用户名和密码
-		
-    	Student user=new Student(userName,password);
-    	UserDao  dao2 = new UserDao();
-    	try {
-    		dao2.add(user);
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		//添加数据----获取的是用户名和密码
+		//用户注册事件 ---- 插入到数据库中
+		String sql = "insert into student values(null,?,?)";
+		Object[] params = {userName,password};
+		int ssss =new QueryRunner().execute(sql, params);
+		if(ssss>0) {
+			JOptionPane.showMessageDialog(null, "注册成功！");		
+		}else {
+			JOptionPane.showMessageDialog(null, "注册错误！");			
 		}
-    	finally {
-    		JOptionPane.showMessageDialog(null, "注册成功！");			
-    	}
-		
 	}
-
+    
+	
+	
+	
 	
 	public void toLogin(ActionEvent e) {
 	
