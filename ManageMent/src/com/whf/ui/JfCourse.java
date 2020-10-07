@@ -22,6 +22,7 @@ import com.whf.dao.impl.CourseDaoImpl;
 import com.whf.pojo.Course;
 import com.whf.pojo.Student;
 import com.whf.pojo.Teacher;
+import com.whf.util.Readfile;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -153,6 +154,18 @@ public class JfCourse extends JFrame {
 			}
 		});
 		
+	   //数据导出
+		JButton excelBnt=new JButton("导出");
+		excelBnt.setBounds(530, 450, 100, 50);
+		frame.add(excelBnt);
+		excelBnt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Readfile rf=new Readfile();
+				rf.save();
+			}
+			
+		});
 		
 		//更新课程表按钮事件
 		replaceBtn.addActionListener(new ActionListener() {
@@ -218,7 +231,7 @@ public class JfCourse extends JFrame {
 		jj.add(jcombo,JLayeredPane.MODAL_LAYER);
 		jj.add(jlable,JLayeredPane.MODAL_LAYER);
 		jj.add(textField22,JLayeredPane.MODAL_LAYER);
-		
+		jj.add(excelBnt,JLayeredPane.MODAL_LAYER);
 		frame.setLayeredPane(jj);
 		frame.setSize(image.getIconWidth(),image.getIconHeight());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
