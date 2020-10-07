@@ -25,7 +25,7 @@ public class UserDao extends BaseDaoImpl <Student> {
        //µÇÂ¼ÑéÖ¤
         public  Student login(Connection con,Student user) throws Exception{
               Student resultUser=null;
-              String sql="select * from Student where userName=? and password=?";
+              String sql="select * from student where userName=? and password=?";
               PreparedStatement ps=con.prepareStatement(sql);       
               ps.setString(1,user.getUserName());
               ps.setString(2,user.getPassWord());
@@ -41,7 +41,7 @@ public class UserDao extends BaseDaoImpl <Student> {
         
         public  Teacher login1(Connection con1,Teacher user1) throws Exception{
             Teacher resultUser=null;
-            String sql="select * from Teacher where teaName=? and password=?";
+            String sql="select * from teacher where teaName=? and password=?";
             PreparedStatement ps=con1.prepareStatement(sql);       
             ps.setString(1,user1.getUserName());
             ps.setString(2,user1.getPassWord());

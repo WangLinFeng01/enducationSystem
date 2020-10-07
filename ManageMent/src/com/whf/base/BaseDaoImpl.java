@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.swing.JOptionPane;
 
 import com.whf.util.JdbcUtils;
 
@@ -63,11 +64,12 @@ public class BaseDaoImpl<T>{
 				e.printStackTrace();
 			}
 		}
-		
+		//注册事件处理
 		Connection con=null;
 		try {
 			//拿到数据库连接
 			con=JdbcUtils.getConnection();
+			con.setAutoCommit(false);
 			PreparedStatement ps = con.prepareStatement(sql);
 			//传参
 			if(params!=null) {
@@ -76,7 +78,13 @@ public class BaseDaoImpl<T>{
 				}
 			}
 			// 执行sql
-			ps.executeUpdate();
+			int rows =ps.executeUpdate();
+			if(rows>0) {
+				con.commit();
+			}else {
+				JOptionPane.showMessageDialog(null, "用户名已存在！");
+				con.rollback();
+			}
 			con.close();
 		} catch (Exception e) {
 			e.printStackTrace();

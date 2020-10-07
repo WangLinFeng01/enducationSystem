@@ -41,7 +41,7 @@ public class ImlThread extends Thread{
 			//获取链接
 	    	Connection conn=JdbcUtils.getConnection();
 					//创建Statement对象
-			String sql="select * from Student";
+			String sql="select * from student";
 			PreparedStatement cmd = conn.prepareStatement(sql);
 			//System.out.println(123);
 			//创建结果集

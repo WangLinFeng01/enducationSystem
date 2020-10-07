@@ -155,7 +155,7 @@ public class JfCourse extends JFrame {
 		});
 		
 	   //数据导出
-		JButton excelBnt=new JButton("导出");
+		JButton excelBnt=new JButton("课表导出");
 		excelBnt.setBounds(530, 450, 100, 50);
 		frame.add(excelBnt);
 		excelBnt.addActionListener(new ActionListener() {

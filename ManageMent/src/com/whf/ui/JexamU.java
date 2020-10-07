@@ -42,6 +42,7 @@ public class JexamU {
 				try {
 					JexamU window = new JexamU();
 					window.frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -62,7 +63,7 @@ public class JexamU {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("\u5B66\u751F\u8BD5\u5377\u9009\u62E9");
-		frame.setBounds(100, 100, 618, 373);
+		frame.setBounds(400, 170, 618, 373);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -90,6 +91,7 @@ public class JexamU {
 		
 		//查询按钮,筛选查询事件
 		JButton btnNewButton = new JButton("\u67E5\u8BE2");
+		btnNewButton.setIcon(new ImageIcon(JexamU.class.getResource("/images/enter.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				choiceFillTable();

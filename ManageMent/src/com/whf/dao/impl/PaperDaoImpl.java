@@ -11,7 +11,7 @@ import com.whf.util.QueryRunner;
 public  class PaperDaoImpl implements PaperDao {
 	@Override
 	public List<Paper> gettableDatas() {
-		String sql="select * from Paper";
+		String sql="select * from paper";
 		Object[] params=null;
 		List<Paper> list=(List<Paper>) QueryRunner.query(sql, params, new BeanListResultSetHandler<Paper>(Paper.class));
 		
@@ -21,7 +21,7 @@ public  class PaperDaoImpl implements PaperDao {
 	//É¸Ñ¡ÊÂ¼þ
 	@Override
 	public List<Paper> getChoiceDatas(Integer obj) {
-		String sql="select * from Paper where id = ?";
+		String sql="select * from paper where id = ?";
 		Object[] params= {obj};
 		List<Paper> list=(List<Paper>) QueryRunner.query(sql, params, new BeanListResultSetHandler<Paper>(Paper.class));
 		

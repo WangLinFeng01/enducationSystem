@@ -29,6 +29,7 @@ public class TeacherFrame extends JFrame {
 				try {
 					TeacherFrame frame= new TeacherFrame();
 					frame.frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,13 +53,13 @@ public class TeacherFrame extends JFrame {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setTitle("\u6559\u5E08\u7BA1\u7406\u754C\u9762");
-		frame.setBounds(100, 100, 511, 346);
+		frame.setBounds(430, 177, 511, 346);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("\u6B22\u8FCE\u60A8\uFF1A");
 		lblNewLabel.setFont(new Font("SimSun", Font.BOLD, 15));
-		lblNewLabel.setBounds(121, 43, 64, 18);
+		lblNewLabel.setBounds(70, 43, 64, 18);
 		
 		frame.getContentPane().add(lblNewLabel);
 		
@@ -89,18 +90,26 @@ public class TeacherFrame extends JFrame {
 		textField.setFont(new Font("SimSun", Font.BOLD, 20));
 		textField.setToolTipText("\u7528\u6237\u6635\u79F0");
 		textField.setEditable(false);
-		textField.setBounds(184, 34, 110, 32);
+		textField.setBounds(127, 34, 97, 32);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		String a=LoginFrame.stupNameText.getText();
 		textField.setText(a);
 		textField.setBorder(null);
+		textField.setOpaque(false);
 		
 		JButton btnNewButton_1_1 = new JButton("\u5B66\u751F\u6210\u7EE9\u67E5\u8BE2");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				toTeacherFrame(e);
+			}
+		});
+		btnNewButton_1_1.setIcon(new ImageIcon(TeacherFrame.class.getResource("/images/map.png")));
 		btnNewButton_1_1.setBounds(288, 213, 141, 32);
 		frame.getContentPane().add(btnNewButton_1_1);
 		
 		JButton btnNewButton_1_2 = new JButton("\u67E5\u770B\u8BFE\u7A0B\u8FDB\u5EA6");
+		btnNewButton_1_2.setIcon(new ImageIcon(TeacherFrame.class.getResource("/images/perper.png")));
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				toJ_scheduleUI(e);
@@ -110,6 +119,7 @@ public class TeacherFrame extends JFrame {
 		frame.getContentPane().add(btnNewButton_1_2);
 		
 		JButton btnNewButton_1_3 = new JButton("\u5B66\u751F\u7591\u70B9\u53CD\u9988");
+		btnNewButton_1_3.setIcon(new ImageIcon(TeacherFrame.class.getResource("/images/question.png")));
 		btnNewButton_1_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				toQueryfeedback(e);
@@ -119,6 +129,7 @@ public class TeacherFrame extends JFrame {
 		frame.getContentPane().add(btnNewButton_1_3);
 		
 		JButton btnNewButton_1_4 = new JButton("\u8BBE\u7F6E\u8003\u5377");
+		btnNewButton_1_4.setIcon(new ImageIcon(TeacherFrame.class.getResource("/images/paper.png")));
 		btnNewButton_1_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				toQuestionSetting(e);
@@ -134,12 +145,8 @@ public class TeacherFrame extends JFrame {
 				goBack(e);
 			}
 		});
-		btnNewButton_1_1_2.setBounds(288, 266, 141, 32);
+		btnNewButton_1_1_2.setBounds(70, 265, 141, 32);
 		frame.getContentPane().add(btnNewButton_1_1_2);
-		
-		JButton btnNewButton_1_1_2_1 = new JButton("\u8868\u683C\u5BFC\u51FA");
-		btnNewButton_1_1_2_1.setBounds(70, 266, 141, 32);
-		frame.getContentPane().add(btnNewButton_1_1_2_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(TeacherFrame.class.getResource("/images/tea.bg3.jpg")));
@@ -147,7 +154,24 @@ public class TeacherFrame extends JFrame {
 		frame.getContentPane().add(lblNewLabel_1);
 	}
 
+//跳转至成绩查询界面
+		protected void toTeacherFrame(ActionEvent e) {
+			 this.dispose1();//当前的窗体关闭
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						TeacherGUI frame = new TeacherGUI();
+						frame.frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		
+	}
 
+
+//跳转至疑问反馈界面
 		protected void toQuestionSetting(ActionEvent e) {
 			this.dispose1();//当前的窗体关闭
 			EventQueue.invokeLater(new Runnable() {
@@ -163,7 +187,7 @@ public class TeacherFrame extends JFrame {
 		
 	}
 
-
+ //跳转至课程表界面
 		protected void toJfCourse(ActionEvent e) {
 			this.dispose1();//当前的窗体关闭
 			EventQueue.invokeLater(new Runnable() {
@@ -199,7 +223,7 @@ public class TeacherFrame extends JFrame {
 
 //跳转至课程进度表
 	protected void toJ_scheduleUI(ActionEvent e) {
-		this.dispose();//当前的窗体关闭
+		this.dispose1();//当前的窗体关闭
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -217,7 +241,7 @@ public class TeacherFrame extends JFrame {
 //跳转至随机点名界面
 	protected void toRandomRollCallUI(ActionEvent e) {
 		
-    	this.dispose();//当前的窗体关闭
+    	this.dispose1();//当前的窗体关闭
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

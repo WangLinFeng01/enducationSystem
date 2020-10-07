@@ -20,6 +20,7 @@ import com.whf.pojo.Feedback;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Queryfeedback extends JFrame {
 
@@ -36,6 +37,7 @@ public class Queryfeedback extends JFrame {
 				try {
 					Queryfeedback window = new Queryfeedback();
 					window.frame.setVisible(true);
+					window.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -56,7 +58,7 @@ public class Queryfeedback extends JFrame {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 571, 346);
+		frame.setBounds(400, 140, 571, 346);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -81,6 +83,7 @@ public class Queryfeedback extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JButton btnNewButton = new JButton("\u786E\u5B9A");
+		btnNewButton.setIcon(new ImageIcon(Queryfeedback.class.getResource("/images/enter.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				toBack1(arg0);

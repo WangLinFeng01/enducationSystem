@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class RandomRollCallUI {
 	JButton btn,btn_1;
@@ -33,6 +34,7 @@ public class RandomRollCallUI {
 				try {
 					RandomRollCallUI window = new RandomRollCallUI();
 					window.frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,7 +52,7 @@ public class RandomRollCallUI {
 	 void initialize() {
 		frame = new JFrame("随机点名界面");
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
-		frame.setBounds(100, 100, 671, 510);
+		frame.setBounds(400, 120, 671, 510);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -62,6 +64,7 @@ public class RandomRollCallUI {
 		frame.getContentPane().add(lblNewLabel_1);
 		//开始按钮
 		JButton btn = new JButton("\u5F00\u59CB");
+		btn.setIcon(new ImageIcon(RandomRollCallUI.class.getResource("/images/start.png")));
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//获取触发事件对象实现监听映射
@@ -95,6 +98,7 @@ public class RandomRollCallUI {
 		
 		//停止按钮
 		JButton btn_1 = new JButton("\u505C\u6B62");
+		btn_1.setIcon(new ImageIcon(RandomRollCallUI.class.getResource("/images/stop1.png")));
 		btn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 //			//获取触发事件对象实现监听映射
@@ -106,7 +110,7 @@ public class RandomRollCallUI {
 		    		}
 			}
 		});
-		btn_1.setBounds(384, 328, 97, 31);
+		btn_1.setBounds(384, 328, 114, 31);
 		frame.getContentPane().add(btn_1);
 		
 		JLabel lblNewLabel = new JLabel("\u73A9\u7684\u5C31\u662F\u6FC0\u60C5");
@@ -115,6 +119,7 @@ public class RandomRollCallUI {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("\u8FD4\u56DE");
+		btnNewButton.setIcon(new ImageIcon(RandomRollCallUI.class.getResource("/images/goBack.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				toTeacherFrame(e);

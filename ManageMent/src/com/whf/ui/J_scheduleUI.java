@@ -117,6 +117,7 @@ public class J_scheduleUI {
 		textField_1.setColumns(10);
 		
 		JButton btnNewButton = new JButton("刷新");
+		btnNewButton.setIcon(new ImageIcon(J_scheduleUI.class.getResource("/images/chongzi1.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//调用table上的特定的鼠标点击事件-->将数据传入到数据库中
@@ -128,7 +129,7 @@ public class J_scheduleUI {
 				
 			}
 		});
-		btnNewButton.setBounds(434, 302, 66, 25);
+		btnNewButton.setBounds(434, 294, 104, 33);
 		frame.getContentPane().add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("编号:");
@@ -147,7 +148,7 @@ public class J_scheduleUI {
 				
 			}
 		});
-		btnNewButton_2.setBounds(90, 302, 122, 24);
+		btnNewButton_2.setBounds(100, 292, 128, 36);
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -300,7 +301,7 @@ public class J_scheduleUI {
 		//执行操作
 		String str1 = "";
 		if(!str.equals(str1)) {
-			String sql = "update T_schedule set status = ? where id = ?";
+			String sql = "update t_schedule set status = ? where id = ?";
 			Object[] params = {str,id};//参数值
 			new QueryRunner().execute(sql, params);
 		}

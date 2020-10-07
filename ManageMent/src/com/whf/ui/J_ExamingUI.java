@@ -84,7 +84,7 @@ public class J_ExamingUI {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("\u8003\u8BD5\u754C\u9762");
-		frame.setBounds(100, 100, 539, 425);
+		frame.setBounds(400, 170, 539, 425);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		

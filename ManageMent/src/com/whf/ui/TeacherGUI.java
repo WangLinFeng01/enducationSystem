@@ -1,6 +1,7 @@
 package com.whf.ui;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -27,6 +28,7 @@ public class TeacherGUI extends JFrame{
     private JTable table;
     private JTextField aTextField;
     private JTextField bTextField;
+    JFrame frame;
 
     public TeacherGUI()
     {
@@ -114,9 +116,19 @@ public class TeacherGUI extends JFrame{
      * @param args
      */
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
     	TeacherGUI jTableDefaultTableModelTest = new TeacherGUI();
         jTableDefaultTableModelTest.setVisible(true);
+         
+        EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TeacherGUI frame= new TeacherGUI();
+					frame.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
     }
 
 }

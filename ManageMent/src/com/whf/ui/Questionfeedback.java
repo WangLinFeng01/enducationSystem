@@ -70,12 +70,13 @@ public class Questionfeedback extends JFrame{
 		frame.setForeground(Color.BLACK);
 		frame.setFont(new Font("Copperplate Gothic Light", Font.BOLD | Font.ITALIC, 12));
 		frame.setTitle("\u5B66\u751F\u7591\u95EE\u53CD\u9988");
-		frame.setBounds(100, 100, 626, 495);
+		frame.setBounds(400, 170, 626, 495);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		
 		JButton btnNewButton = new JButton("\u63D0\u4EA4");
+		btnNewButton.setIcon(new ImageIcon(Questionfeedback.class.getResource("/images/enter.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String Fname1=textField_1.getText();

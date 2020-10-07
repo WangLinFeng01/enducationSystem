@@ -20,6 +20,7 @@ import com.whf.util.QueryRunner;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class J_PaperDown {
 	//提交按钮返回的是学生主界面;以及将成绩录入到数据库中
@@ -64,7 +65,7 @@ public class J_PaperDown {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("\u4E0B\u8F7D\u8BD5\u5377\u754C\u9762");
-		frame.setBounds(100, 100, 539, 289);
+		frame.setBounds(400, 170, 539, 289);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -87,6 +88,7 @@ public class J_PaperDown {
 		lblNewLabel_1.setText(subjectId+"");
 		
 		JButton btnNewButton = new JButton("确认下载");
+		btnNewButton.setIcon(new ImageIcon(J_PaperDown.class.getResource("/images/enter.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				createExam();
@@ -98,7 +100,7 @@ public class J_PaperDown {
 				new UserDao().downFile(textField_1.getText(),str);
 			}
 		});
-		btnNewButton.setBounds(317, 151, 93, 35);
+		btnNewButton.setBounds(317, 150, 112, 36);
 		frame.getContentPane().add(btnNewButton);
 	}
 

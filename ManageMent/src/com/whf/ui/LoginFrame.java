@@ -53,6 +53,7 @@ public class LoginFrame extends JFrame {
 				try {
 					LoginFrame frame = new LoginFrame();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -68,11 +69,12 @@ public class LoginFrame extends JFrame {
 		setResizable(false);
 		setTitle("\u7528\u6237\u767B\u5F55");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 504, 379);
+		setBounds(430, 170, 504, 379);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		
 		JLabel lblNewLabel = new JLabel("\u6559\u52A1\u7BA1\u7406\u7CFB\u7EDF");
 		lblNewLabel.setIcon(new ImageIcon(LoginFrame.class.getResource("/images/manage.png")));

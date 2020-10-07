@@ -26,6 +26,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class ScoreFrame extends JFrame {
 
@@ -43,6 +44,7 @@ public class ScoreFrame extends JFrame {
 				try {
 					ScoreFrame frame = new ScoreFrame();
 					frame.frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,7 +67,7 @@ public class ScoreFrame extends JFrame {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setTitle("\u5B66\u751F\u6210\u7EE9\u67E5\u8BE2");
-		frame.setBounds(100, 100, 479, 330);
+		frame.setBounds(400, 170, 479, 330);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -92,6 +94,7 @@ public class ScoreFrame extends JFrame {
 		
 		
 		btnNewButton = new JButton("\u8FD4\u56DE");
+		btnNewButton.setIcon(new ImageIcon(ScoreFrame.class.getResource("/images/goBack.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				goBack11(e);
