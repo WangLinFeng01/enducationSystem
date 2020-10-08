@@ -19,7 +19,7 @@ public final class JdbcUtils {
 	private static String user="";
 	private static String password="";
 	private static String driver="";
-	private static int initCount=10;
+	private static int initCount=40;
 	
 	//准备一串connection  pools池子
 	private static LinkedList<Connection> pools=new LinkedList<Connection>();

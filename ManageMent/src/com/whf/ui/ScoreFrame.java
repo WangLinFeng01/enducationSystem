@@ -6,12 +6,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import com.mysql.jdbc.StringUtils;
 import com.whf.pojo.Student;
 import com.whf.pojo.T_schedule;
 import com.whf.pojo.T_score;
 import com.whf.util.BeanListResultSetHandler;
 import com.whf.util.JdbcUtils;
 import com.whf.util.QueryRunner;
+import com.whf.util.StringUtil;
 
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
@@ -113,7 +115,7 @@ public class ScoreFrame extends JFrame {
 			
 			
 		});
-		btnNewButton.setBounds(339, 253, 93, 23);
+		btnNewButton.setBounds(351, 247, 92, 29);
 		frame.getContentPane().add(btnNewButton);
 		
 
@@ -139,20 +141,22 @@ public class ScoreFrame extends JFrame {
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
+		
 		JButton btnNewButton_1 = new JButton("\u67E5\u8BE2");
 		btnNewButton_1.setIcon(new ImageIcon(ScoreFrame.class.getResource("/images/enter.png")));
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnNewButton_1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				if(textField_1.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "科目ID不能为空！");		
+					JOptionPane.showMessageDialog(null, "学生ID不能为空！");	
+					return;
 				}
 				fillTable();
 			}
 		});
-		btnNewButton_1.setBounds(350, 24, 82, 23);
+		btnNewButton_1.setBounds(350, 21, 93, 29);
 		frame.getContentPane().add(btnNewButton_1);
 		
-		JLabel lblNewLabel_1 = new JLabel("\u79D1\u76EEID\uFF1A");
+		JLabel lblNewLabel_1 = new JLabel("\u5B66\u751FID\uFF1A");
 		lblNewLabel_1.setFont(new Font("SimSun", Font.BOLD, 12));
 		lblNewLabel_1.setBounds(204, 26, 55, 18);
 		frame.getContentPane().add(lblNewLabel_1);
@@ -168,7 +172,7 @@ public class ScoreFrame extends JFrame {
 	
 	//查询分数表中的内容
 	public List<T_score> queryT_score(){
-		String sql = "select * from t_scoer where paperId = ?";
+		String sql = "select * from t_scoer where studentId = ?";
 		Integer id = Integer.parseInt(textField_1.getText());
 		Object[] params= {id};
 		List<T_score> list=(List<T_score>) QueryRunner.query(sql, params, new BeanListResultSetHandler<T_score>(T_score.class));
