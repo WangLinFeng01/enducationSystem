@@ -73,7 +73,7 @@ public class TeacherFrame extends JFrame {
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(TeacherFrame.class.getResource("/images/course.png")));
-		btnNewButton.setBounds(70, 103, 141, 32);
+		btnNewButton.setBounds(288, 155, 141, 32);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("\u5B66\u751F\u70B9\u540D");
@@ -83,7 +83,7 @@ public class TeacherFrame extends JFrame {
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon(TeacherFrame.class.getResource("/images/student.png")));
-		btnNewButton_1.setBounds(288, 103, 141, 32);
+		btnNewButton_1.setBounds(70, 99, 141, 32);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		textField = new JTextField();
@@ -125,7 +125,7 @@ public class TeacherFrame extends JFrame {
 				toQueryfeedback(e);
 			}
 		});
-		btnNewButton_1_3.setBounds(70, 213, 141, 32);
+		btnNewButton_1_3.setBounds(288, 99, 141, 32);
 		frame.getContentPane().add(btnNewButton_1_3);
 		
 		JButton btnNewButton_1_4 = new JButton("\u8BBE\u7F6E\u8003\u5377");
@@ -135,7 +135,7 @@ public class TeacherFrame extends JFrame {
 				toQuestionSetting(e);
 			}
 		});
-		btnNewButton_1_4.setBounds(288, 155, 141, 32);
+		btnNewButton_1_4.setBounds(70, 213, 141, 32);
 		frame.getContentPane().add(btnNewButton_1_4);
 		
 		JButton btnNewButton_1_1_2 = new JButton("\u8FD4\u56DE\u767B\u5F55");
