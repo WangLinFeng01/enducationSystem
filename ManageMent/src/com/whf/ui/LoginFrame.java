@@ -281,8 +281,7 @@ public class LoginFrame extends JFrame {
 
 	//¹Ø±Õ´°Ìå
 	protected void closeJFrame(MouseEvent e1) {
-	     
-	      this.dispose();
+	      System.exit(1);
 		
 	}
 
