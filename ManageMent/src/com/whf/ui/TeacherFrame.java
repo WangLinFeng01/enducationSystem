@@ -101,7 +101,7 @@ public class TeacherFrame extends JFrame {
 		JButton btnNewButton_1_1 = new JButton("\u5B66\u751F\u6210\u7EE9\u67E5\u8BE2");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		//	  	toTeacherGUI(e);   //跳转至成绩查询界面的方法
+			  	toTeacherGUI(e);   //跳转至成绩查询界面的方法
 			}
 		});
 		btnNewButton_1_1.setIcon(new ImageIcon(TeacherFrame.class.getResource("/images/map.png")));

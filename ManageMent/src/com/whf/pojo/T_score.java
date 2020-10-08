@@ -21,6 +21,13 @@ public class T_score {
 	public void setExamDate(Date examDate) {
 		this.examDate = examDate;
 	}
+	
+	public T_score(Integer score, Integer studentId, Integer subjectId) {
+		super();
+		this.score = score;
+		this.studentId = studentId;
+		this.subjectId = subjectId;
+	}
 
 	public T_score(Integer id, Date examDate, Integer score, Integer paperId, Integer studentId, Integer subjectId) {
 		super();

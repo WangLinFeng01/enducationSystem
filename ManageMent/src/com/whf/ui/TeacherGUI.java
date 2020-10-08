@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -18,9 +20,14 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
 import com.whf.dao.T_scoreDao;
 import com.whf.dao.impl.T_scoreDaoImpl;
 import com.whf.pojo.T_score;
+import com.whf.util.ExcelUtil;
+import com.whf.util.Popup;
+import com.whf.util.ReadFilesUtils;
 //维护表格
 public class TeacherGUI extends JFrame{
 
@@ -29,77 +36,74 @@ public class TeacherGUI extends JFrame{
     private JTextField aTextField;
     private JTextField bTextField;
     JFrame frame;
-
-    public TeacherGUI()
-    {
-        super();
-        setTitle("表格");
-        setBounds(100,100,500,400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TeacherGUI window = new TeacherGUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+    
+    public TeacherGUI() {
+    	initialize();
+    }
+    private void initialize() {
+    	frame = new JFrame();
+        frame.setBounds(100,100,800,600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         String[] columnNames = {"学号","语文","数学","英语"};   //列名
-        Object [][]tableVales=null; //数据
         T_scoreDao scoreDao=new T_scoreDaoImpl();
         List<T_score> list=scoreDao.T_score_query();
-       for (int i = 0; i < list.size(); i++) {
-    	  tableVales[i][0]=list.get(0).getId();
-    	  tableVales[i][1]=list.get(1).getScore();
-    	  tableVales[i][2]=list.get(2).getScore();
-    	  tableVales[i][3]=list.get(3).getScore();
-    	  
-       }
+        //数据封装
+        Integer[] tepm=new Integer[list.size()];
+		int index=0;
+		for (T_score t_score : list) {
+			if(index==tepm.length) {
+				break;
+			}
+			tepm[index]=t_score.getStudentId();
+			index++;
+		}
+		int max=(int)Collections.max(Arrays.asList(tepm));
+		
+		String [][]tableVales=new String[max][4]; //数据
+		
+		int count=0;
+		for (int i = 0; i < max; i++) {
+			tableVales[i][0]=String.valueOf(i+1);
+    	  for (int j = 1; j <4; j++) {
+    		  tableVales[i][j]=String.valueOf(list.get(count).getScore());
+    		   count++;
+    	  }
+		}
+		
         tableModel = new DefaultTableModel(tableVales,columnNames);
         table = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(table);   //支持滚动
-        getContentPane().add(scrollPane,BorderLayout.CENTER);
+        frame.getContentPane().add(scrollPane,BorderLayout.CENTER);
         
-        //排序:
-        //table.setRowSorter(new TableRowSorter(tableModel));
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);  //单选
-        table.addMouseListener(new MouseAdapter(){    //鼠标事件
-            public void mouseClicked(MouseEvent e){
-                int selectedRow = table.getSelectedRow(); //获得选中行索引
-                Object oa = tableModel.getValueAt(selectedRow, 0);
-                Object ob = tableModel.getValueAt(selectedRow, 1);
-                aTextField.setText(oa.toString());  //给文本框赋值
-                bTextField.setText(ob.toString());
-            }
-        });
+      
         scrollPane.setViewportView(table);
         final JPanel panel = new JPanel();
-        getContentPane().add(panel,BorderLayout.SOUTH);
-        panel.add(new JLabel("A: "));
-        aTextField = new JTextField("A4",10);
-        panel.add(aTextField);
-        panel.add(new JLabel("B: "));
-        bTextField = new JTextField("B4",10);
-        panel.add(bTextField);
-        final JButton addButton = new JButton("添加");   //添加按钮
-        addButton.addActionListener(new ActionListener(){//添加事件
+        frame.getContentPane().add(panel,BorderLayout.SOUTH);
+
+        final JButton excelButton = new JButton("导出");   //修改按钮
+        excelButton.addActionListener(new ActionListener(){//添加事件
             public void actionPerformed(ActionEvent e){
-                String []rowValues = {aTextField.getText(),bTextField.getText()};
-                tableModel.addRow(rowValues);  //添加一行
-                int rowCount = table.getRowCount() +1;   //行数加上1
-                aTextField.setText("A"+rowCount);
-                bTextField.setText("B"+rowCount);
+            	HSSFWorkbook wb=ExcelUtil.getHSSFWorkbook("学生分数统计", columnNames, tableVales, null);
+            	String filePath=Popup.choicePath();
+            	if(null!=filePath) {
+            		ReadFilesUtils.save(filePath, wb);            		
+            	}
             }
         });
-        panel.add(addButton);  
-
-        final JButton updateButton = new JButton("修改");   //修改按钮
-        updateButton.addActionListener(new ActionListener(){//添加事件
-            public void actionPerformed(ActionEvent e){
-                int selectedRow = table.getSelectedRow();//获得选中行的索引
-                if(selectedRow!= -1)   //是否存在选中行
-                {
-                    //修改指定的值：
-                    tableModel.setValueAt(aTextField.getText(), selectedRow, 0);
-                    tableModel.setValueAt(bTextField.getText(), selectedRow, 1);
-                    //table.setValueAt(arg0, arg1, arg2)
-                }
-            }
-        });
-        panel.add(updateButton);
-
+        panel.add(excelButton);
         final JButton delButton = new JButton("删除");
         delButton.addActionListener(new ActionListener(){//添加事件
             public void actionPerformed(ActionEvent e){
@@ -111,24 +115,30 @@ public class TeacherGUI extends JFrame{
             }
         });
         panel.add(delButton);
+        
+        JButton exitBtn = new JButton("退出");
+        panel.add(exitBtn);
+        exitBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				goBackTeacher(e);
+			}
+		});
     }
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-    	TeacherGUI jTableDefaultTableModelTest = new TeacherGUI();
-        jTableDefaultTableModelTest.setVisible(true);
-         
-        EventQueue.invokeLater(new Runnable() {
+    private void dispose2() {
+  		frame.dispose();
+  		
+  	}
+    protected void goBackTeacher(ActionEvent e) {
+		this.dispose2();//当前的窗体关闭
+		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TeacherGUI frame= new TeacherGUI();
+					TeacherFrame frame = new TeacherFrame();
 					frame.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-		});
-    }
-
+		});			
+    }  
 }

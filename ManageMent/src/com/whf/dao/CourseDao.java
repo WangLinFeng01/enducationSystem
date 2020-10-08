@@ -8,6 +8,6 @@ import com.whf.pojo.Course;
 
 public interface CourseDao {
 	public List<Course> course_query(int classid);
-	public List<Course> course_update(Course course);
+	public Integer course_update(Course course);
 
 }
