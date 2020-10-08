@@ -110,6 +110,7 @@ public class UserDao extends BaseDaoImpl <Student> {
         		write= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
         		write.write(s);
         		write.newLine();
+    			JOptionPane.showMessageDialog(null, " ‘æÌœ¬‘ÿ≥…π¶£°");
         		write.flush();
 			} catch (Exception e) {
 				e.printStackTrace();

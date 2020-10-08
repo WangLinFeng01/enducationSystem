@@ -102,6 +102,25 @@ public class J_PaperDown {
 		});
 		btnNewButton.setBounds(317, 150, 112, 36);
 		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("\u8FD4\u56DE\u4E0A\u4E00\u7EA7");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();//当前的窗体关闭
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							JexamU frame = new JexamU();
+							frame.frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});	
+			}
+		});
+		btnNewButton_1.setBounds(114, 150, 112, 36);
+		frame.getContentPane().add(btnNewButton_1);
 	}
 
 	//创建一个考试模块(将数据库中的信息读取到向量列表中)
