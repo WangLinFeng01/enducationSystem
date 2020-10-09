@@ -4,15 +4,8 @@ public class Feedback {
  	private Integer id;
  	private String fname;
  	private String feedback;
-	public Feedback(Integer id, String fname, String feedback) {
-		super();
-		this.id = id;
-		this.fname = fname;
-		this.feedback = feedback;
-	}
-	public Feedback() {
-		super();
-	}
+ 	private String information;
+
 	public Integer getId() {
 		return id;
 	}
@@ -31,5 +24,12 @@ public class Feedback {
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
 	}
+	public String getInformation() {
+		return information;
+	}
+	public void setInformation(String information) {
+		this.information = information;
+	}
+
 	
 }

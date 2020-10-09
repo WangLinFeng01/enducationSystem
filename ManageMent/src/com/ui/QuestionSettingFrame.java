@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
+//import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
 
 import com.dao.QuestionSettingDao;
 import com.dao.impl.QuestionSettingDaoImpl;
