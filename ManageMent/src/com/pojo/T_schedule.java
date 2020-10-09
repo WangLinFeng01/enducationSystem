@@ -3,20 +3,28 @@ package com.pojo;
 public class T_schedule {
 
 	private Integer id;
-	private String date;
-	private String info;
-	private String status;
+	private String subject;
+	private Integer hour;
+	private Integer speed;
 	
 	public T_schedule() {
 		super();
 	}
 
-	public T_schedule(Integer id, String date, String info, String status) {
+	public T_schedule(String subject, Integer hour, Integer speed) {
+		super();
+		this.subject = subject;
+		this.hour = hour;
+		this.speed = speed;
+	}
+
+
+	public T_schedule(Integer id, String subject, Integer hour, Integer speed) {
 		super();
 		this.id = id;
-		this.date = date;
-		this.info = info;
-		this.status = status;
+		this.subject = subject;
+		this.hour = hour;
+		this.speed = speed;
 	}
 
 	public Integer getId() {
@@ -27,27 +35,27 @@ public class T_schedule {
 		this.id = id;
 	}
 
-	public String getDate() {
-		return date;
+	public String getSubject() {
+		return subject;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
-	public String getInfo() {
-		return info;
+	public Integer getHour() {
+		return hour;
 	}
 
-	public void setInfo(String info) {
-		this.info = info;
+	public void setHour(Integer hour) {
+		this.hour = hour;
 	}
 
-	public String getStatus() {
-		return status;
+	public Integer getSpeed() {
+		return speed;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setSpeed(Integer speed) {
+		this.speed = speed;
 	}
 }
