@@ -15,14 +15,20 @@ import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JTextField;
 
+import com.pojo.Feedback;
 import com.pojo.Paper;
 import com.pojo.Question;
+import com.pojo.Student;
+import com.pojo.T_schedule;
 import com.util.BeanListResultSetHandler;
+import com.util.BeanResultSetHandler;
+import com.util.JdbcUtils;
 import com.util.QueryRunner;
 
 import java.awt.FlowLayout;
@@ -39,8 +45,8 @@ public class J_ExamingUI {
 	private JTextArea textArea;
 	//设置一个装从JexamUI传递来的试卷Id;用static修饰保证是唯一的,且要实现多人考试,要用到事务回滚
 	//留的两个接口
-	public  Integer stuId = 1;//学生id
-	public String nameStu = LoginFrame.stupNameText.getText();//学生的名字
+	public static String nameStu = LoginFrame.stupNameText.getText();//学生的名字
+	public  static Integer stuId = getStudentId(nameStu);//学生id(通过登录的学生名字来得到学生id)
 	public static Integer examId;//科目ID
 	public  Integer paperId;//试卷ID
 	public static Integer score=0;//成绩
@@ -91,11 +97,7 @@ public class J_ExamingUI {
 		JButton btnNewButton_1 = new JButton("提交试卷");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(score == 0) {
-					score = 0;
-				}else {
-					score = showScore();//拿到分数;					
-				}
+				score = showScore();//拿到分数;				
 				transferTable();
 				btnNewButton_1.setEnabled(false);				
 //				System.exit(0); // 退出
@@ -107,7 +109,7 @@ public class J_ExamingUI {
 		
 		JLabel lblNewLabel_5 = new JLabel("");
 		lblNewLabel_5.setFont(new Font("宋体", Font.PLAIN, 14));
-		lblNewLabel_5.setBounds(39, 73, 17, 15);
+		lblNewLabel_5.setBounds(468, 73, 17, 15);
 		frame.getContentPane().add(lblNewLabel_5);
 		
 		JButton btnNewButton_3 = new JButton("上一题");
@@ -137,6 +139,9 @@ public class J_ExamingUI {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 
+		JLabel lblNewLabel_8 = new JLabel("N");
+		lblNewLabel_8.setBounds(30, 73, 26, 15);
+		frame.getContentPane().add(lblNewLabel_8);
 		
 		JButton btnNewButton = new JButton("开始按钮");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -151,6 +156,7 @@ public class J_ExamingUI {
 				showQuestion(); // 调用showQuestion模块
 				mt.start(); // 考试时间倒计时启动
 				btnNewButton.setEnabled(false);// 设置按钮不可点击
+				lblNewLabel_8.setText(topicnum+"");
 			}
 		});
 		
@@ -180,12 +186,12 @@ public class J_ExamingUI {
 		
 		JLabel lblNewLabel_3 = new JLabel("\u7B2C");
 		lblNewLabel_3.setFont(new Font("宋体", Font.PLAIN, 14));
-		lblNewLabel_3.setBounds(20, 73, 26, 15);
+		lblNewLabel_3.setBounds(449, 73, 26, 15);
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("\u9898");
 		lblNewLabel_4.setFont(new Font("宋体", Font.PLAIN, 14));
-		lblNewLabel_4.setBounds(59, 73, 26, 15);
+		lblNewLabel_4.setBounds(488, 73, 26, 15);
 		frame.getContentPane().add(lblNewLabel_4);
 		
 		
@@ -224,6 +230,16 @@ public class J_ExamingUI {
 				});
 				btnNewButton_4.setBounds(409, 328, 81, 29);
 				frame.getContentPane().add(btnNewButton_4);
+				
+				JLabel lblNewLabel_7 = new JLabel("\u5171");
+				lblNewLabel_7.setBounds(10, 73, 17, 15);
+				frame.getContentPane().add(lblNewLabel_7);
+				
+				
+				
+				JLabel lblNewLabel_9 = new JLabel("\u9898");
+				lblNewLabel_9.setBounds(46, 73, 26, 15);
+				frame.getContentPane().add(lblNewLabel_9);
 		//测试是否拿到
 //		System.out.println("dd:"+examId);
 
@@ -288,14 +304,14 @@ public class J_ExamingUI {
 	private int showScore() {
 		int right = 0;//正确的题数
 		int error = 0;//错误
-		for (int i = 0; i < topicnum; i++) {
+		for (int i = 0; i < p; i++) {
 			if (answerAry.get(i).equals(answerResponse.get(i))) {// 判断答案的正确与错误
 				right++;
 			} else {
 				error++;
 			}
 		}
-		int score = (int) (right * 100 / topicnum); // 设置分数
+		int score = (int) (right * 2); // 设置分值为2
 		JOptionPane.showMessageDialog(null, "答对" + right + "题，答错" + error + "题，分数为" + score);
 		return score;
 	}	
@@ -306,6 +322,21 @@ public class J_ExamingUI {
 		Object[] obj = {insertTime,score,examId,stuId,paperId};
 		JOptionPane.showMessageDialog(null, "提交成功");
 		new QueryRunner().execute(sql, obj);
+	}
+	
+	//根据学生的姓名来得到学生ID
+	public static int getStudentId(String nameStu) {
+		int id = 0;
+		String sql = "select * from student";
+		Object[] params = null;
+		List<Student> list=(List<Student>) QueryRunner.query(sql, params, new BeanListResultSetHandler<Student>(Student.class));
+		for(Student s:list) {
+			if(s.getUserName().equals(nameStu)) {
+				id = s.getId();
+				return id;
+			}
+		}
+		return 1;
 	}
 }
 

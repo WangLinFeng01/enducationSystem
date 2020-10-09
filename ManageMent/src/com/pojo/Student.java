@@ -10,6 +10,13 @@ public Student() {
 	super();
 }
 
+public Student(int id, String userName, String password) {
+	super();
+	this.id = id;
+	this.userName = userName;
+	this.password = password;
+}
+
 public Student(String userName, String password) {
 	super();
 	this.userName = userName;
