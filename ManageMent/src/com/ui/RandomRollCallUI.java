@@ -130,7 +130,7 @@ public class RandomRollCallUI {
 		frame.getContentPane().add(btnNewButton);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon(RandomRollCallUI.class.getResource("/images/timg (5).jpg")));
+		lblNewLabel_2.setIcon(new ImageIcon(RandomRollCallUI.class.getResource("/images/timg (6.3).jpg")));
 		lblNewLabel_2.setBounds(10, 10, 637, 453);
 		frame.getContentPane().add(lblNewLabel_2);
 		

@@ -143,7 +143,7 @@ public class Questionfeedback extends JFrame{
 		frame.getContentPane().add(btnNewButton_1);
 		
 		lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon(Questionfeedback.class.getResource("/images/timg (5).jpg")));
+		lblNewLabel_2.setIcon(new ImageIcon(Questionfeedback.class.getResource("/images/timg (4).jpg")));
 		lblNewLabel_2.setBounds(10, 10, 602, 450);
 		frame.getContentPane().add(lblNewLabel_2);
 	}

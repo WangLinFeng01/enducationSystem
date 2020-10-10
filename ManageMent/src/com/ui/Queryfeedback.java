@@ -140,8 +140,9 @@ public class Queryfeedback {
 		JButton btnNewButton = new JButton("\u8FD4\u56DE");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				toStudent();
 			}
+
 		});
 		btnNewButton.setBounds(485, 259, 85, 29);
 		frame.getContentPane().add(btnNewButton);
@@ -156,7 +157,7 @@ public class Queryfeedback {
 		frame.getContentPane().add(btnNewButton_1);
 		
 		textField = new JTextField();
-		textField.setBounds(158, 437, 608, 38);
+		textField.setBounds(158, 437, 515, 38);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -174,7 +175,7 @@ public class Queryfeedback {
 		frame.getContentPane().add(btnNewButton_2);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(158, 364, 608, 38);
+		textField_1.setBounds(158, 364, 515, 38);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -193,7 +194,7 @@ public class Queryfeedback {
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setIcon(new ImageIcon(Queryfeedback.class.getResource("/images/timg (5).jpg")));
+		lblNewLabel_3.setIcon(new ImageIcon(Queryfeedback.class.getResource("/images/timg (5.2).jpg")));
 		lblNewLabel_3.setBounds(10, 10, 874, 574);
 		frame.getContentPane().add(lblNewLabel_3);
 		//填充表格
@@ -240,6 +241,25 @@ public class Queryfeedback {
 			JOptionPane.showMessageDialog(null, "答复成功！");
 		}
 		return;	
+	}
+	private void toStudent() {
+		this.dispose1();//当前的窗体关闭
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					StudentFrame frame = new StudentFrame();
+					frame.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});	
+		
+	}
+
+	private void dispose1() {
+	frame.dispose();
+		
 	}
 }
 
