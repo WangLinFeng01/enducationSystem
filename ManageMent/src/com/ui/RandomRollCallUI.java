@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import java.awt.SystemColor;
 
 public class RandomRollCallUI {
 	JButton btn,btn_1;
@@ -51,7 +52,7 @@ public class RandomRollCallUI {
 	}
 	 void initialize() {
 		frame = new JFrame("随机点名界面");
-		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+		frame.getContentPane().setBackground(SystemColor.control);
 		frame.setBounds(360, 120, 671, 510);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -125,8 +126,13 @@ public class RandomRollCallUI {
 				toTeacherFrame(e);
 			}
 		});
-		btnNewButton.setBounds(179, 391, 97, 31);
+		btnNewButton.setBounds(179, 396, 97, 31);
 		frame.getContentPane().add(btnNewButton);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setIcon(new ImageIcon(RandomRollCallUI.class.getResource("/images/timg (5).jpg")));
+		lblNewLabel_2.setBounds(10, 10, 637, 453);
+		frame.getContentPane().add(lblNewLabel_2);
 		
 		
 	}

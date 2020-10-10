@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 
 public class Queryfeedback {
 
@@ -70,7 +71,7 @@ public class Queryfeedback {
 		frame.getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(41, 54, 807, 181);
+		scrollPane.setBounds(43, 45, 807, 181);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -190,6 +191,11 @@ public class Queryfeedback {
 		JLabel lblNewLabel_2 = new JLabel("\u53CD\u9988\u4EBAid:");
 		lblNewLabel_2.setBounds(64, 308, 58, 15);
 		frame.getContentPane().add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setIcon(new ImageIcon(Queryfeedback.class.getResource("/images/timg (5).jpg")));
+		lblNewLabel_3.setBounds(10, 10, 874, 574);
+		frame.getContentPane().add(lblNewLabel_3);
 		//Ìî³ä±í¸ñ
 		fillTable();
 	}

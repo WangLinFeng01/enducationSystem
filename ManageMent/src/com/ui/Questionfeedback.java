@@ -36,6 +36,7 @@ public class Questionfeedback extends JFrame{
 	private JLabel lblNewLabel_1;
 	private JTextField textField_1;
 	private JButton btnNewButton_1;
+	private JLabel lblNewLabel_2;
 
 	/**
 	 * Launch the application.
@@ -140,6 +141,11 @@ public class Questionfeedback extends JFrame{
 		});
 		btnNewButton_1.setBounds(347, 354, 122, 41);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setIcon(new ImageIcon(Questionfeedback.class.getResource("/images/timg (5).jpg")));
+		lblNewLabel_2.setBounds(10, 10, 602, 450);
+		frame.getContentPane().add(lblNewLabel_2);
 	}
 
 	protected void toStudent(ActionEvent e) {
