@@ -12,9 +12,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.dao.T_scoreDao;
-import com.pojo.Course;
 import com.pojo.T_score;
 import com.util.JdbcUtils;
+
 
 public class T_scoreDaoImpl implements T_scoreDao {
 

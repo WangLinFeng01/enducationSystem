@@ -160,7 +160,7 @@ public class TeacherFrame extends JFrame {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						TeacherGUI frame = new TeacherGUI();
+						TeacherUI frame = new TeacherUI();
 						frame.frame.setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();

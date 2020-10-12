@@ -14,27 +14,21 @@ public class T_score {
 		super();
 	}
 
-	public Date getExamDate() {
-		return examDate;
+	public T_score(Integer id, Date exameDate, Integer score, Integer paperId, Integer studentId, Integer subjectId) {
+		super();
+		this.id = id;
+		this.examDate = exameDate;
+		this.score = score;
+		this.paperId = paperId;
+		this.studentId = studentId;
+		this.subjectId = subjectId;
 	}
-
-	public void setExamDate(Date examDate) {
-		this.examDate = examDate;
-	}
+	
+	
 	
 	public T_score(Integer score, Integer studentId, Integer subjectId) {
 		super();
 		this.score = score;
-		this.studentId = studentId;
-		this.subjectId = subjectId;
-	}
-
-	public T_score(Integer id, Date examDate, Integer score, Integer paperId, Integer studentId, Integer subjectId) {
-		super();
-		this.id = id;
-		this.examDate = examDate;
-		this.score = score;
-		this.paperId = paperId;
 		this.studentId = studentId;
 		this.subjectId = subjectId;
 	}
@@ -47,7 +41,13 @@ public class T_score {
 		this.id = id;
 	}
 
-	
+	public Date getExameDate() {
+		return examDate;
+	}
+
+	public void setExameDate(Date exameDate) {
+		this.examDate = exameDate;
+	}
 
 	public Integer getScore() {
 		return score;
@@ -81,5 +81,10 @@ public class T_score {
 		this.subjectId = subjectId;
 	}
 
+	@Override
+	public String toString() {
+		return "T_score [id=" + id + ", exameDate=" + examDate + ", score=" + score + ", paperId=" + paperId
+				+ ", studentId=" + studentId + ", subjectId=" + subjectId + "]";
+	}
 		
 }
