@@ -99,7 +99,7 @@ public class Questionfeedback extends JFrame{
 				   int x = 0;
 				   try {
 					   //这是框架的插入用法
-					String sql = "insert into feedback values(DEFAULT,'"+Fname1+"','"+Feedback+"');" ;
+					String sql = "insert into feedback values(DEFAULT,'"+Fname1+"','"+Feedback+"',default);" ;
 					Object[] params= null;
 					new QueryRunner().execute(sql, params);
 				} catch (Exception e1) {

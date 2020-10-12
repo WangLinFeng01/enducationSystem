@@ -76,7 +76,7 @@ public class JfCourse extends JFrame {
 	private void initialize() {
 		frame = new JFrame();
 //		frame.setResizable(false);
-		frame.setBounds(100, 100, 550, 550);
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -128,11 +128,13 @@ public class JfCourse extends JFrame {
 		JLabel jlable=new JLabel("班级");
 	
 		jlable.setBounds(20, 20, 100, 50);
+		frame.add(jlable);
 		
 		//下拉列表
 		 String [] a = {"1","2"};     //定义字符串
 	     JComboBox jcombo = new JComboBox(a);   //实例化下拉列表
 	     jcombo.setBounds(60, 30, 80, 30);
+	     frame.add(jcombo);
 	     
 	     //下拉列表的改变事件
 	     jcombo.addItemListener(new ItemListener() {
@@ -217,34 +219,8 @@ public class JfCourse extends JFrame {
 		});
 	
 	     
-        //设置背景
-		JLayeredPane  jj=new JLayeredPane();
-		ImageIcon image=new ImageIcon("src/images/part-00337-957.jpg");
-		//随便找一张图就可以看到效果。		
-		//创建背景的那些东西
-		JPanel jp=new JPanel();
-		jp.setBounds(0,0,image.getIconWidth(),image.getIconHeight());
- 
-		JLabel jl=new JLabel(image);
-        //jl.setBounds(0,0,image.getIconWidth(),image.getIconHeight());
-		jp.add(jl);
-		
-		//将jp放到最底层。
-		jj.add(jp,JLayeredPane.DEFAULT_LAYER);
-		//将jb放到高一层的地方
-		jj.add(lblNewLabel,JLayeredPane.MODAL_LAYER);
-		jj.add(scrollPane,JLayeredPane.MODAL_LAYER);
-		jj.add(exitBtn,JLayeredPane.MODAL_LAYER);
-		jj.add(replaceBtn,JLayeredPane.MODAL_LAYER);
-		jj.add(jcombo,JLayeredPane.MODAL_LAYER);
-		jj.add(jlable,JLayeredPane.MODAL_LAYER);
-		jj.add(textField22,JLayeredPane.MODAL_LAYER);
-		jj.add(excelBnt,JLayeredPane.MODAL_LAYER);
-		frame.setLayeredPane(jj);
-		frame.setSize(image.getIconWidth(),image.getIconHeight());
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocation(image.getIconWidth(),image.getIconHeight());
-//		frame.setVisible(true);
+     
+		frame.setBounds(100, 70, 1050, 650);
 	}
 
 	protected void goBackTeacher(ActionEvent e) {

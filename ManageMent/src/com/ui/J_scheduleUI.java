@@ -147,6 +147,31 @@ public class J_scheduleUI {
 		picture.setIcon(icon);//将生成的柱状图放入JLabel中.
 		frame.getContentPane().add(picture);
 		picture.setIcon(icon);//将生成的柱状图放入JLabel中.
+		
+		JButton btnNewButton_1_1 = new JButton("\u8FD4\u56DE");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				toTeacherFrame(e);
+			}
+
+			private void toTeacherFrame(ActionEvent e) {
+				frame.dispose();//当前的窗体关闭
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							TeacherFrame frame = new TeacherFrame();
+							frame.frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});		
+				
+			}
+		});
+		btnNewButton_1_1.setBounds(184, 3, 66, 23);
+		frame.getContentPane().add(btnNewButton_1_1);
+		
 	}
 	
 	//将数学的表格中的内容拿出来
@@ -233,8 +258,4 @@ public class J_scheduleUI {
 		}
 		return;
 	}
-	
-	
-	
-	
 }
