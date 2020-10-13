@@ -31,18 +31,19 @@ import javax.swing.JScrollPane;
 import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.JPasswordField;
 
 public class LoginFrame extends JFrame {
 
 	private UserDao userDao=new UserDao();
 	private JPanel contentPane;
 	public static JTextField stupNameText;
-	private JTextField passwordText;
 	public static boolean bool;
 	 private JRadioButton rbtn1;
 	 private JRadioButton rbtn2;
 	 public  static Student user;
 	 public  static Teacher tea;
+	 private JPasswordField passwordText;
 	/**
 	 * Launch the application.
 	 */
@@ -68,7 +69,7 @@ public class LoginFrame extends JFrame {
 		setResizable(false);
 		setTitle("\u7528\u6237\u767B\u5F55");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(430, 170, 504, 379);
+		setBounds(300, 170, 750, 421);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -77,31 +78,29 @@ public class LoginFrame extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("\u6559\u52A1\u7BA1\u7406\u7CFB\u7EDF");
 		lblNewLabel.setIcon(new ImageIcon(LoginFrame.class.getResource("/images/manage.png")));
-		lblNewLabel.setFont(new Font("SimSun", Font.BOLD, 24));
-		lblNewLabel.setBounds(131, 38, 251, 59);
+		lblNewLabel.setFont(new Font("SimSun", Font.BOLD, 25));
+		lblNewLabel.setForeground(new Color(0,0,0));
+		lblNewLabel.setBounds(253, 33, 251, 59);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("\u7528\u6237\u540D:");
 		lblNewLabel_1.setIcon(new ImageIcon(LoginFrame.class.getResource("/images/user.png")));
 		lblNewLabel_1.setFont(new Font("SimSun", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(120, 129, 82, 32);
+		lblNewLabel_1.setForeground(new Color(0,0,0));
+		lblNewLabel_1.setBounds(253, 129, 82, 32);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("\u5BC6  \u7801:");
 		lblNewLabel_2.setIcon(new ImageIcon(LoginFrame.class.getResource("/images/password.png")));
 		lblNewLabel_2.setFont(new Font("SimSun", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(120, 185, 82, 26);
+		lblNewLabel_2.setForeground(new Color(0,0,0));
+		lblNewLabel_2.setBounds(253, 185, 82, 26);
 		contentPane.add(lblNewLabel_2);
 		
 		stupNameText = new JTextField();
-		stupNameText.setBounds(212, 135, 137, 21);
+		stupNameText.setBounds(345, 135, 137, 21);
 		contentPane.add(stupNameText);
 		stupNameText.setColumns(10);
-		
-		passwordText = new JTextField();
-		passwordText.setColumns(10);
-		passwordText.setBounds(212, 188, 137, 21);
-		contentPane.add(passwordText);
 		
 		JButton btnNewButton_1_1 = new JButton("\u767B\u5F55");
 		btnNewButton_1_1.addMouseListener(new MouseAdapter() {
@@ -117,7 +116,7 @@ public class LoginFrame extends JFrame {
 			}
 		});
 		btnNewButton_1_1.setIcon(new ImageIcon(LoginFrame.class.getResource("/images/denglu.png")));
-		btnNewButton_1_1.setBounds(39, 278, 82, 32);
+		btnNewButton_1_1.setBounds(154, 292, 82, 32);
 		contentPane.add(btnNewButton_1_1);
 		
 		//÷ÿ÷√
@@ -131,7 +130,7 @@ public class LoginFrame extends JFrame {
 		});
 		btnNewButton_1_1_1.setIcon(new ImageIcon(LoginFrame.class.getResource("/images/tuichu2.png")));
 		
-		btnNewButton_1_1_1.setBounds(154, 278, 82, 32);
+		btnNewButton_1_1_1.setBounds(284, 292, 82, 32);
 		contentPane.add(btnNewButton_1_1_1);
 		
 		//ÕÀ≥ˆ
@@ -144,7 +143,7 @@ public class LoginFrame extends JFrame {
 		});
 	
 		btnNewButton_1_1_2.setIcon(new ImageIcon(LoginFrame.class.getResource("/images/tuichu.png")));
-		btnNewButton_1_1_2.setBounds(384, 278, 82, 32);
+		btnNewButton_1_1_2.setBounds(536, 292, 82, 32);
 		contentPane.add(btnNewButton_1_1_2);
 		
 		JButton btnNewButton_1_1_2_1 = new JButton("\u6CE8\u518C");
@@ -154,21 +153,23 @@ public class LoginFrame extends JFrame {
 				toLogon(e);
 			}
 		});
-		btnNewButton_1_1_2_1.setBounds(267, 278, 82, 32);
+		btnNewButton_1_1_2_1.setBounds(408, 292, 82, 32);
 		contentPane.add(btnNewButton_1_1_2_1);
 		
 	    rbtn1 = new JRadioButton("\u5B66\u751F");	
+	    rbtn1.setFont(new Font("SimSun", Font.BOLD, 12));
 		rbtn1.addMouseListener(new MouseAdapter() {
 
 		});
-		rbtn1.setBounds(208, 234, 58, 26);
+		rbtn1.setBounds(345, 234, 58, 26);
 		contentPane.add(rbtn1);
 		
 	    rbtn2 = new JRadioButton("\u6559\u5E08");
+	    rbtn2.setFont(new Font("SimSun", Font.BOLD, 12));
 		rbtn2.addMouseListener(new MouseAdapter() {
 
 		});
-		rbtn2.setBounds(300, 234, 58, 26);
+		rbtn2.setBounds(432, 234, 58, 26);
 		contentPane.add(rbtn2);
 		
 		
@@ -178,14 +179,20 @@ public class LoginFrame extends JFrame {
 		
 		JLabel lblNewLabel_3 = new JLabel("\u8BF7\u9009\u62E9\u8BBF\u95EE\u8EAB\u4EFD\uFF1A");
 		lblNewLabel_3.setFont(new Font("SimSun", Font.BOLD, 15));
-		lblNewLabel_3.setBounds(74, 237, 128, 21);
+		lblNewLabel_3.setForeground(new Color(0,0,0));
+		lblNewLabel_3.setBounds(196, 237, 128, 21);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon(LoginFrame.class.getResource("/images/bg.jpg")));
-		lblNewLabel_4.setBounds(0, 0, 498, 351);
-	
+		lblNewLabel_4.setIcon(new ImageIcon(LoginFrame.class.getResource("/images/green.jpg")));
+		lblNewLabel_4.setBounds(0, 0, 744, 393);
 		contentPane.add(lblNewLabel_4);
+		
+		passwordText = new JPasswordField();
+		passwordText.setFont(new Font("SimSun", Font.PLAIN, 15));
+		passwordText.setForeground(Color.black);
+		passwordText.setBounds(345, 186, 137, 24);
+		contentPane.add(passwordText);
 	
 		
 	}
