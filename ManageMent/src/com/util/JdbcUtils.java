@@ -19,7 +19,7 @@ public final class JdbcUtils {
 	private static String user="root";
 	private static String password="root";
 	private static String driver="com.mysql.jdbc.Driver";
-	private static int initCount=40;
+	private static int initCount=20;
 	
 	//准备一串connection  pools池子
 	private static LinkedList<Connection> pools=new LinkedList<Connection>();

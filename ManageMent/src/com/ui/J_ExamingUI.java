@@ -311,7 +311,7 @@ public class J_ExamingUI {
 				error++;
 			}
 		}
-		int score = (int) (right * 2); // 设置分值为2
+		int score = (int) (right * 3); // 设置分值为2
 		JOptionPane.showMessageDialog(null, "答对" + right + "题，答错" + error + "题，分数为" + score);
 		return score;
 	}	
