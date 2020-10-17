@@ -4,12 +4,21 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.text.JTextComponent;
 
+import com.dao.impl.FeedbackDaoImpl;
+import com.dao.impl.TeacherDaoImpl;
+import com.pojo.Feedback;
 import com.pojo.Student;
+import com.pojo.Teacher;
 import com.util.JdbcUtils;
 import com.util.QueryRunner;
+import com.util.ResultSetHandler;
 import com.util.StringUtil;
+
+import jxl.biff.drawing.ComboBox;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -26,7 +35,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
+
+import javax.security.auth.login.LoginContext;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import java.awt.SystemColor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class Questionfeedback extends JFrame{
     
@@ -34,9 +53,8 @@ public class Questionfeedback extends JFrame{
 	private JTextField textField;
 	protected int x;
 	private JLabel lblNewLabel_1;
-	private JTextField textField_1;
 	private JButton btnNewButton_1;
-	private JLabel lblNewLabel_2;
+	private JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -79,35 +97,7 @@ public class Questionfeedback extends JFrame{
 		btnNewButton.setIcon(new ImageIcon(Questionfeedback.class.getResource("/images/enter.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String Fname1=textField_1.getText();
-				String Feedback=textField.getText();
-				if(StringUtil.isEmpty(Fname1)) {
-					JOptionPane.showMessageDialog(null, "姓名不能为空！");
-					JTextComponent FnameText = null;//JTextComponent 文本组件
-					FnameText.setText("");
-			       return;	
-				}
-				if(StringUtil.isEmpty(Feedback)) {
-					JOptionPane.showMessageDialog(null, "内容不能为空！");
-					JTextComponent FeedbackText = null;
-					FeedbackText.setText("");
-			       return;	
-				}
-				              
-					
-				   //数据导入数据库
-				   int x = 0;
-				   try {
-					   //这是框架的插入用法
-					String sql = "insert into feedback values(DEFAULT,'"+Fname1+"','"+Feedback+"',default);" ;
-					Object[] params= null;
-					new QueryRunner().execute(sql, params);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}  finally {
-					JOptionPane.showMessageDialog(null, "反馈成功！");
-			   }
-				   return;
+                Question(e);
 			}
 			
 		});
@@ -127,11 +117,6 @@ public class Questionfeedback extends JFrame{
 		lblNewLabel_1.setBounds(69, 114, 58, 15);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(137, 101, 162, 41);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
-		
 		btnNewButton_1 = new JButton("\u8FD4\u56DE");
 		btnNewButton_1.setIcon(new ImageIcon(Questionfeedback.class.getResource("/images/goBack.png")));
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -141,13 +126,43 @@ public class Questionfeedback extends JFrame{
 		});
 		btnNewButton_1.setBounds(347, 354, 122, 41);
 		frame.getContentPane().add(btnNewButton_1);
+        
+		//获取学生登录时的姓名
+		String name=LoginFrame.stupNameText.getText();
+		JLabel lblNewLabel_2 = new JLabel(name);
 		
-		lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon(Questionfeedback.class.getResource("/images/timg (4).jpg")));
-		lblNewLabel_2.setBounds(10, 10, 602, 450);
+		lblNewLabel_2.setBackground(Color.WHITE);
+		lblNewLabel_2.setBounds(168, 101, 132, 41);
+		lblNewLabel_2.setEnabled(false);
 		frame.getContentPane().add(lblNewLabel_2);
+		
+		comboBox = new JComboBox();
+		comboBox.setBounds(347, 110, 122, 32);
+		frame.getContentPane().add(comboBox);
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setIcon(new ImageIcon(Questionfeedback.class.getResource("/images/timg (4).jpg")));
+		lblNewLabel_3.setBounds(10, 10, 602, 447);
+		frame.getContentPane().add(lblNewLabel_3);
+		
+		//填充下拉框
+		fillcomboBox();
 	}
-
+	
+	//填充下拉框的实现
+	public void fillcomboBox() {
+		ComboBoxModel cm=comboBox.getModel();
+		DefaultComboBoxModel model=(DefaultComboBoxModel)cm;
+		//拿到放在结果集中的数据
+		List<Teacher> datas=new TeacherDaoImpl().getDatas();
+		for(Teacher p:datas) {
+			Vector lineData=new Vector();
+			lineData.add(p.getUserName());
+			model.addAll(lineData);
+		}
+	}
+	
+    //界面跳转到学生界面
 	protected void toStudent(ActionEvent e) {
 		// TODO Auto-generated method stub
 		this.dispose1();//当前的窗体关闭
@@ -162,10 +177,37 @@ public class Questionfeedback extends JFrame{
 			}
 		});		
 	}
-
+	
 	private void dispose1() {
 		// TODO Auto-generated method stub
 		frame.dispose();
 	}
-
+	//疑难反馈按钮实现
+	private void Question(ActionEvent e) {
+		String name=LoginFrame.stupNameText.getText();
+		String Feedback=textField.getText();
+		String teacherName=comboBox.getSelectedItem().toString();
+		System.out.println(teacherName);
+		
+		if(StringUtil.isEmpty(Feedback)) {
+			JOptionPane.showMessageDialog(null, "内容不能为空！");
+			JTextComponent FeedbackText = null;
+			FeedbackText.setText("");
+	       return;	
+		}
+		   //数据导入数据库
+		   int x = 0;
+		   try {
+			   //这是框架的插入用法
+			String sql = "insert into feedback values(null,'"+name+"','"+Feedback+"',DEFAULT,'"+teacherName+"');";
+			Object[] params= null;
+			System.out.println(sql);
+			new QueryRunner().execute(sql, params);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}  finally {
+			JOptionPane.showMessageDialog(null, "反馈成功！");
+	   }
+		   return;
+	}
 }

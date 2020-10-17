@@ -92,6 +92,7 @@ public class Queryfeedback {
 						int columnCount=table.getSelectedColumn();
 						//行数
 						int rowCount=table.getSelectedRow();
+						System.out.println(columnCount+".."+rowCount);
 						//得到单元格中的内容
 						Object values=table.getValueAt(rowCount, columnCount);
 						
@@ -112,17 +113,17 @@ public class Queryfeedback {
 			}
 		});
 		//初始化表
-		String[] titles= {"id","反馈人","疑难反馈信息","老师答复"};
+		String[] titles= {"id","反馈人","疑难反馈信息","老师答复","教师姓名"};
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
+				{null, null, null, null, null},
 			},
 			new String[] {
-				"id", "\u53CD\u9988\u4EBA", "\u7591\u96BE\u53CD\u9988\u4FE1\u606F", "\u8001\u5E08\u7B54\u590D\u4FE1\u606F"
+				"id", "\u53CD\u9988\u4EBA", "\u7591\u96BE\u53CD\u9988\u4FE1\u606F", "\u6559\u5E08\u7B54\u590D", "\u6559\u5E08\u59D3\u540D"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				Object.class, String.class, Object.class, String.class
+				Integer.class, Object.class, String.class, Object.class, String.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
@@ -134,12 +135,14 @@ public class Queryfeedback {
 		table.getColumnModel().getColumn(2).setMinWidth(300);
 		table.getColumnModel().getColumn(3).setPreferredWidth(300);
 		table.getColumnModel().getColumn(3).setMinWidth(300);
+		table.getColumnModel().getColumn(4).setPreferredWidth(20);
+		table.getColumnModel().getColumn(4).setMinWidth(20);
 		scrollPane.setViewportView(table);
 		
 		JButton btnNewButton = new JButton("\u8FD4\u56DE");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				toStudent();
+				toTeacher();
 			}
 
 		});
@@ -212,6 +215,7 @@ public class Queryfeedback {
 			lineData.add(p.getFname());
 			lineData.add(p.getFeedback());
 			lineData.add(p.getInformation());
+			lineData.add(p.getTeaName());
 			model.addRow(lineData);
 		}
 	}
@@ -220,6 +224,7 @@ public class Queryfeedback {
 		
 		String content=textField.getText();
 		String id=idd.getText();
+		System.out.println(id);
 		if(StringUtil.isEmpty(content)) {
 			JOptionPane.showMessageDialog(null, "请输入答复内容！");
 			JTextComponent FnameText = null;//JTextComponent 文本组件
@@ -230,6 +235,7 @@ public class Queryfeedback {
 		   try {
 			  //修改数据库表
 			  String sql = "update feedback set information ="+"'"+content+"'"+" where id="+id;
+			  System.out.println(sql);
 		      Object[] params= null;
 		      new QueryRunner().execute(sql, params);
 		} catch (Exception e1) {
@@ -239,7 +245,7 @@ public class Queryfeedback {
 		}
 		return;	
 	}
-	private void toStudent() {
+	private void toTeacher() {
 		this.dispose1();//当前的窗体关闭
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

@@ -1,10 +1,12 @@
 package com.pojo;
 
+//¥¥Ω®Feedback¿‡
 public class Feedback {
  	private Integer id;
  	private String fname;
  	private String feedback;
  	private String information;
+ 	private String teaName;
 
 	public Integer getId() {
 		return id;
@@ -29,6 +31,12 @@ public class Feedback {
 	}
 	public void setInformation(String information) {
 		this.information = information;
+	}
+	public String getTeaName() {
+		return teaName;
+	}
+	public void setTeaName(String teaName) {
+		this.teaName = teaName;
 	}
 
 	
