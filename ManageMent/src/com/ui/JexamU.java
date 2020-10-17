@@ -81,11 +81,11 @@ public class JexamU {
 		scrollPane.setViewportView(table);
 		
 		JLabel lblNewLabel = new JLabel("\u8F93\u5165\u8BD5\u5377id:");
-		lblNewLabel.setBounds(69, 91, 92, 15);
+		lblNewLabel.setBounds(60, 91, 92, 15);
 		frame.getContentPane().add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(141, 88, 134, 21);
+		textField.setBounds(160, 88, 134, 21);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -97,7 +97,7 @@ public class JexamU {
 				choiceFillTable();
 			}
 		});
-		btnNewButton.setBounds(319, 87, 85, 23);
+		btnNewButton.setBounds(346, 87, 85, 23);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("开始考试");
@@ -106,12 +106,9 @@ public class JexamU {
 				jump();//跳转事件
 			}
 		});
-		btnNewButton_1.setBounds(451, 87, 100, 23);
+		btnNewButton_1.setBounds(470, 87, 100, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
-		JLabel lblNewLabel_1 = new JLabel("\u8BD5\u5377Id\u8BF4\u660E: 1\u5BF9\u5E94\u7740\u6570\u5B66, 2\u5BF9\u5E94\u7740\u8BED\u6587  , 3\u5BF9\u5E94\u7740\u82F1\u8BED");
-		lblNewLabel_1.setBounds(0, 10, 474, 15);
-		frame.getContentPane().add(lblNewLabel_1);
 		
 		//下载到本地(试卷下载)
 		JButton btnNewButton_2 = new JButton("\u4E0B\u8F7D\u5230\u672C\u5730");
@@ -120,7 +117,7 @@ public class JexamU {
 				jump1();
 			}
 		});
-		btnNewButton_2.setBounds(451, 35, 100, 23);
+		btnNewButton_2.setBounds(469, 35, 100, 23);
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("\u8FD4\u56DE");
@@ -130,7 +127,7 @@ public class JexamU {
 				toStudent(e);
 			}
 		});
-		btnNewButton_3.setBounds(319, 35, 85, 25);
+		btnNewButton_3.setBounds(60, 34, 85, 25);
 		frame.getContentPane().add(btnNewButton_3);
 		//表的初始化
 		fillTable();

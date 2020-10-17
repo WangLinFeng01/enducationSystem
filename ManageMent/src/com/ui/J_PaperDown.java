@@ -94,9 +94,9 @@ public class J_PaperDown {
 			public void actionPerformed(ActionEvent e) {
 				createExam();
 				String str = s.toString();//得到题库中的题目
-				System.out.println(str);
 				if(textField_1.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "请输入保存的地址!");
+					return;
 				}
 				new UserDao().downFile(textField_1.getText(),str);
 			}

@@ -92,7 +92,6 @@ public class Queryfeedback {
 						int columnCount=table.getSelectedColumn();
 						//行数
 						int rowCount=table.getSelectedRow();
-						System.out.println(columnCount+".."+rowCount);
 						//得到单元格中的内容
 						Object values=table.getValueAt(rowCount, columnCount);
 						
@@ -221,7 +220,6 @@ public class Queryfeedback {
 		
 		String content=textField.getText();
 		String id=idd.getText();
-		System.out.println(id);
 		if(StringUtil.isEmpty(content)) {
 			JOptionPane.showMessageDialog(null, "请输入答复内容！");
 			JTextComponent FnameText = null;//JTextComponent 文本组件
@@ -232,7 +230,6 @@ public class Queryfeedback {
 		   try {
 			  //修改数据库表
 			  String sql = "update feedback set information ="+"'"+content+"'"+" where id="+id;
-			  System.out.println(sql);
 		      Object[] params= null;
 		      new QueryRunner().execute(sql, params);
 		} catch (Exception e1) {
@@ -247,7 +244,7 @@ public class Queryfeedback {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StudentFrame frame = new StudentFrame();
+					TeacherFrame frame = new TeacherFrame();
 					frame.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

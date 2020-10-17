@@ -47,8 +47,8 @@ public class J_ExamingUI {
 	//留的两个接口
 	public static String nameStu = LoginFrame.stupNameText.getText();//学生的名字
 	public  static Integer stuId = getStudentId(nameStu);//学生id(通过登录的学生名字来得到学生id)
-	public static Integer examId;//科目ID
-	public  Integer paperId;//试卷ID
+	public static Integer examId;//试卷ID
+	public  Integer subjectId;//科目ID
 	public static Integer score=0;//成绩
 	public Date insertTime;//插入时间
 	//(1)实现将数据库中的题目信息传到textAre中
@@ -269,7 +269,7 @@ public class J_ExamingUI {
 	public void createExam() {// 创建考试模块
 		String s;
 		//要根据id的值来查看试卷
-		String sql = "select * from question where subjectId = ?";
+		String sql = "select * from question where paperId = ?";
 		Object[] params = {examId};
 		//这个list中存放着关于数据库不同的question表元素
 		List<Question> list=(List<Question>) QueryRunner.query(sql, params, new BeanListResultSetHandler<Question>(Question.class));
@@ -282,7 +282,7 @@ public class J_ExamingUI {
 			String  strD = p.getOptionD();
 			String  strE = p.getOptionE();
 			String  subStr= p.getSubText();//第一行的题目,
-			paperId = p.getPaperId();//试卷ID
+			subjectId = p.getSubjectId();//科目ID
 			insertTime = p.getJoinTime();//加入的时间
 			//得到试题:
 			s = subStr+ '\n'+strA+ '\n'+strB+ '\n'+strC+ '\n'+strC+ '\n'+strD+ '\n'+strE;
@@ -319,7 +319,7 @@ public class J_ExamingUI {
 	public void transferTable() {
 		//成绩id,加入时间,最高成绩,试卷id,血
 		String sql="insert into t_scoer value (null,?,?,?,?,?)";
-		Object[] obj = {insertTime,score,examId,stuId,paperId};
+		Object[] obj = {insertTime,score,examId,stuId,subjectId};
 		JOptionPane.showMessageDialog(null, "提交成功");
 		new QueryRunner().execute(sql, obj);
 	}
