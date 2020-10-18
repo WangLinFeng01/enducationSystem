@@ -1,5 +1,6 @@
 package com.ui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -57,6 +58,7 @@ public class StudentFrame extends JFrame{
 		
 		JLabel lblNewLabel = new JLabel("\u6B22\u8FCE\u60A8\uFF1A");
 		lblNewLabel.setFont(new Font("SimSun", Font.BOLD, 15));
+		lblNewLabel.setForeground(Color.white);
 		lblNewLabel.setBounds(96, 46, 74, 18);
 		frame.getContentPane().add(lblNewLabel);
 		
@@ -66,6 +68,7 @@ public class StudentFrame extends JFrame{
 		textField11.setBounds(154, 37, 99, 33);
 		frame.getContentPane().add(textField11);
 		textField11.setColumns(10);
+		textField11.setForeground(Color.white);
 		String l1=LoginFrame.stupNameText.getText();
 		textField11.setText(l1);
 	    textField11.setBorder(null);
@@ -148,7 +151,7 @@ public class StudentFrame extends JFrame{
 		frame.getContentPane().add(btnNewButton_1_1_1_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(StudentFrame.class.getResource("/images/stu.bg3.jpg")));
+		lblNewLabel_1.setIcon(new ImageIcon(StudentFrame.class.getResource("/images/bg1111.jpg")));
 		lblNewLabel_1.setBounds(0, 0, 500, 313);
 		frame.getContentPane().add(lblNewLabel_1);
 	}
