@@ -14,7 +14,7 @@ import com.util.JdbcUtils;
 import com.util.QueryRunner;
 
 public class QuestionSettingDaoImpl implements QuestionSettingDao{
-
+    //插入试题数据
 	@Override
 	public Integer questionSetting(Question question) {
 		
@@ -27,19 +27,19 @@ public class QuestionSettingDaoImpl implements QuestionSettingDao{
 		
 		
 	}
-
+    //根据试题id查询试题
 	@Override
 	public List<Question> queryQuestion(Integer paperId) {
-		String sql="select * from question where paperId=?";
+		String sql="select id,answer,joinTime,optionA,optionB,optionC,optionD,optionE,subText,type,subjectId,paperId from question where paperId=?";
 		Object[] params= {paperId};
 		List <Question>list=(List<Question>) QueryRunner.query(sql, params, new BeanListResultSetHandler<Question>(Question.class));
 		return list;
 	}
-
+    //查询试卷id
 	@Override
-	public List queryPaperId() {
+	public List<String> queryPaperId() {
 		String sql="select DISTINCT paperId from question";
-		List list=new ArrayList();
+		List<String> list=new ArrayList<String>();
 		try {
 			Connection  conn=JdbcUtils.getConnection();
 			 PreparedStatement ps=conn.prepareStatement(sql);
@@ -57,7 +57,7 @@ public class QuestionSettingDaoImpl implements QuestionSettingDao{
 		}
 		 return list;
 	}
-
+    //修改试题
 	@Override
 	public Integer questionUpdate(Question question) {
 		String sql="update question set answer=?,optionA=?,optionB=?,optionC=?,optionD=?,optionE=?,subText=?,type=?,subjectId=?,paperId=? where id=?";

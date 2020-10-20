@@ -10,4 +10,8 @@ public interface PaperDao {
 	List<Paper> gettableDatas();
 	//筛选事件
 	List<Paper> getChoiceDatas(Integer obj);
+	//添加试卷
+	public Integer addPaper(Paper paper);
+	//查询试卷id
+	public List<String> queryPaperId();
 }

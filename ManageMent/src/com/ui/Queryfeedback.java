@@ -66,7 +66,7 @@ public class Queryfeedback {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("\u53CD\u9988\u4FE1\u606F");
-		frame.setBounds(240, 70, 908, 623);
+		frame.setBounds(100, 100, 908, 623);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		

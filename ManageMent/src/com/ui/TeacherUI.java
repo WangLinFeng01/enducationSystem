@@ -70,7 +70,7 @@ public class TeacherUI  {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 831, 530);
+		frame.setBounds(170, 80, 831, 530);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -180,7 +180,7 @@ public class TeacherUI  {
 					 table = new JTable(tableModel);
 					 JScrollPane scrollPane = new JScrollPane(table);
 					 scrollPane.setViewportView(table);
-					 scrollPane.setBounds(0, 43, 813, 442);
+					 scrollPane.setBounds(0, 73, 813, 442);
 					 frame.getContentPane().add(scrollPane);
 				 }	
 								

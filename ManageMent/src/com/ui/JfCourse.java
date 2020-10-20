@@ -203,8 +203,6 @@ public class JfCourse extends JFrame {
 		textField22.setFont(new Font("SimSun", Font.BOLD, 20));
 		textField22.setEditable(false);
 		textField22.setBounds(73, 90, 59, 23);
-		String l11=LoginFrame.stupNameText.getText();
-		textField22.setText(l11);
 	    textField22.setBorder(null);
 	    frame.add(textField22);
 	      

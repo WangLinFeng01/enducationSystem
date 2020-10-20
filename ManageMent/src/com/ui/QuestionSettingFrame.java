@@ -1,38 +1,37 @@
 package com.ui;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.text.SimpleDateFormat;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-//import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
-
-import com.dao.QuestionSettingDao;
-import com.dao.impl.QuestionSettingDaoImpl;
-import com.pojo.Course;
-import com.pojo.Question;
-
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Window;
-import javax.swing.ImageIcon;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
+import com.dao.PaperDao;
+import com.dao.QuestionSettingDao;
+import com.dao.SubjectDao;
+import com.dao.impl.PaperDaoImpl;
+import com.dao.impl.QuestionSettingDaoImpl;
+import com.dao.impl.SubjectDaoImpl;
+import com.pojo.Paper;
+import com.pojo.Question;
 
 public class QuestionSettingFrame extends JFrame {
 
@@ -47,6 +46,7 @@ public class QuestionSettingFrame extends JFrame {
 	private JTextField paperId;
 	private JComboBox subjectId;
 	private JComboBox type;
+	private JComboBox cbPaperId;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
@@ -61,6 +61,7 @@ public class QuestionSettingFrame extends JFrame {
 	private JButton exitBtn;
 	private JTable table;
 	private JTextField id;
+	private JTextField paperName;
 
 	/**
 	 * Launch the application.
@@ -77,6 +78,8 @@ public class QuestionSettingFrame extends JFrame {
 			}
 		});
 	}
+		
+	//生成表格的方法
     public JTable showtable(int paperId) {
     	List<Question> list=new QuestionSettingDaoImpl().queryQuestion(paperId);
 		Object[][] objData = new Object[list.size()][12];
@@ -97,6 +100,7 @@ public class QuestionSettingFrame extends JFrame {
 		}
 		
 		table = new JTable();
+		//表格中鼠标的单击事件
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -123,7 +127,7 @@ public class QuestionSettingFrame extends JFrame {
 					Integer s10 = (Integer) table.getValueAt(table.getSelectedRow(), 10);
 					subjectId.setSelectedItem(s10.toString());
 					Integer s11 = (Integer) table.getValueAt(table.getSelectedRow(), 11);
-					QuestionSettingFrame.this.paperId.setText(s11.toString());
+					cbPaperId.setSelectedItem(s11.toString());
 		
 				}
 				
@@ -138,6 +142,8 @@ public class QuestionSettingFrame extends JFrame {
     return table;
 
     }
+    
+    
 	/**
 	 * Create the application.
 	 */
@@ -199,17 +205,21 @@ public class QuestionSettingFrame extends JFrame {
 		frame.getContentPane().add(answer);
 		answer.setColumns(10);
 		
-		paperId = new JTextField();
-		paperId.setBounds(257, 410, 66, 21);
-		frame.getContentPane().add(paperId);
-		paperId.setColumns(10);
+		
+		
+		
 		JButton addBtn = new JButton("\u6DFB\u52A0");
 		addBtn.setIcon(new ImageIcon(QuestionSettingFrame.class.getResource("/images/add.png")));
 		addBtn.setBounds(78, 458, 93, 31);
 		frame.getContentPane().add(addBtn);
 		
-		subjectId = new JComboBox();
-		subjectId.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3"}));
+		//试卷id的下拉框的设置与值得传入
+		
+		SubjectDao subject=new SubjectDaoImpl();
+		List<String> listsub=subject.querysubNames();
+		String[] stringsub = new String[listsub.size()];
+		listsub.toArray(stringsub);
+		subjectId = new JComboBox(stringsub);
 		subjectId.setBounds(98, 410, 72, 21);
 		frame.getContentPane().add(subjectId);
 		
@@ -250,8 +260,8 @@ public class QuestionSettingFrame extends JFrame {
 		frame.getContentPane().add(lblNewLabel_9);
 		
 		lblNewLabel_10 = new JLabel("\u8BD5\u9898\u8BBE\u7F6E");
-		lblNewLabel_10.setFont(new Font("宋体", Font.PLAIN, 18));
-		lblNewLabel_10.setBounds(431, 10, 119, 45);
+		lblNewLabel_10.setFont(new Font("宋体", Font.PLAIN, 22));
+		lblNewLabel_10.setBounds(481, 10, 119, 45);
 		frame.getContentPane().add(lblNewLabel_10);
 		
 		resetBtn = new JButton("\u91CD\u7F6E");
@@ -261,6 +271,7 @@ public class QuestionSettingFrame extends JFrame {
 		
 		exitBtn = new JButton("\u9000\u51FA");
 		exitBtn.setIcon(new ImageIcon(QuestionSettingFrame.class.getResource("/images/goBack.png")));
+		//退出按钮的单击事件
 		exitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//跳转至教师界面
@@ -292,24 +303,24 @@ public class QuestionSettingFrame extends JFrame {
 
 		scrollPane.setViewportView(showtable(1));
 		
-		JLabel lblNewLabel_11 = new JLabel("\u8BD5\u5377ID\uFF1A");
-		lblNewLabel_11.setBounds(1019, 59, 54, 15);
+		JLabel lblNewLabel_11 = new JLabel("\u67E5\u8BE2\u8BD5\u5377\uFF08ID\uFF09\uFF1A");
+		lblNewLabel_11.setBounds(973, 59, 119, 15);
 		frame.getContentPane().add(lblNewLabel_11);
 		
 		//右上角的试卷id下拉列表实现
-		QuestionSettingDao qs=new QuestionSettingDaoImpl();
-		List list=qs.queryPaperId();
-		String[] strings = new String[list.size()];
-		list.toArray(strings);
-		JComboBox comboBox = new JComboBox(strings);
+		PaperDao pdd=new PaperDaoImpl();
+		List list=pdd.queryPaperId();
+		String[] stringpdd = new String[list.size()];
+		list.toArray(stringpdd);
+		JComboBox comboBox = new JComboBox(stringpdd);
 		comboBox.setBounds(1073, 56, 59, 21);
 		frame.getContentPane().add(comboBox);
 		
 		JButton updateBtn = new JButton("\u4FEE\u6539");
-		updateBtn.setBounds(718, 460, 93, 27);
+		updateBtn.setBounds(595, 460, 93, 27);
 		frame.getContentPane().add(updateBtn);
+		//修改按钮的单击事件
 		updateBtn.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Question question=new Question();
@@ -323,8 +334,10 @@ public class QuestionSettingFrame extends JFrame {
 				question.setAnswer(answer.getText());
 				question.setJoinTime(new Date());
 				question.setType(type.getSelectedItem().toString());
-				question.setSubjectId(Integer.valueOf(subjectId.getSelectedItem().toString()));
-				question.setPaperId(Integer.valueOf(paperId.getText()));
+				SubjectDao sj=new SubjectDaoImpl();
+				question.setSubjectId(sj.querysubjectId(subjectId.getSelectedItem().toString()));
+			
+				question.setPaperId(Integer.valueOf(cbPaperId.getSelectedItem().toString()));
 				QuestionSettingDao qsd=new QuestionSettingDaoImpl();
 				int a=qsd.questionUpdate(question);
 				if(a>0) {
@@ -338,13 +351,59 @@ public class QuestionSettingFrame extends JFrame {
 		
 		JLabel lblNewLabel_12 = new JLabel("\u9898\u53F7\uFF1A");
 		lblNewLabel_12.setFont(new Font("宋体", Font.PLAIN, 16));
-		lblNewLabel_12.setBounds(544, 461, 79, 23);
+		lblNewLabel_12.setBounds(464, 461, 79, 23);
 		frame.getContentPane().add(lblNewLabel_12);
 		
 		id = new JTextField();
-		id.setBounds(591, 463, 66, 21);
+		id.setBounds(504, 463, 66, 21);
 		frame.getContentPane().add(id);
 		id.setColumns(10);
+		
+		JLabel lblNewLabel_13 = new JLabel("\u8BD5\u5377\u540D\u79F0\uFF1A");
+		lblNewLabel_13.setBounds(764, 466, 79, 15);
+		frame.getContentPane().add(lblNewLabel_13);
+		
+		paperName = new JTextField();
+		paperName.setBounds(830, 463, 66, 21);
+		frame.getContentPane().add(paperName);
+		paperName.setColumns(10);
+		
+		JButton addPaperBtn = new JButton("\u589E\u52A0\u8BD5\u5377");
+		addPaperBtn.setBounds(925, 458, 93, 31);
+		frame.getContentPane().add(addPaperBtn);
+		
+		//试卷id下拉框
+		PaperDao pd=new PaperDaoImpl();
+		List lista=pd.queryPaperId();
+		String[] stringpaper = new String[lista.size()];
+		lista.toArray(stringpaper);
+		cbPaperId = new JComboBox(stringpaper);
+		cbPaperId.setBounds(255, 410, 66, 21);
+		frame.getContentPane().add(cbPaperId);
+		
+		//增加试卷的单机事件
+		addPaperBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				String subjectitem=subjectId.getSelectedItem().toString();
+				SubjectDao sd=new SubjectDaoImpl();
+				Integer subjectid=sd.querysubjectId(subjectitem);
+				String papername=paperName.getText();
+				if(papername.equals("")) {
+					JOptionPane.showMessageDialog(null, "试卷名称不能为空");
+					return;
+				}
+				Paper paper=new Paper(new Date(),papername,subjectid.toString());
+				PaperDao pd=new PaperDaoImpl();
+				Integer result=pd.addPaper(paper);
+				if(result>0) {
+					JOptionPane.showMessageDialog(null, "增加成功");
+					paperName.setText("");
+				}
+			}
+		});
 		
 		 //下拉列表的改变事件
 		comboBox.addItemListener(new ItemListener() {
@@ -370,29 +429,33 @@ public class QuestionSettingFrame extends JFrame {
 				optionD.setText("");
 				optionE.setText("");	
 				subText.setText("");
-				paperId.setText("");
+				
 				
 			}
 		});
 		
-		
+		//添加的单击事件
 		addBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			
 				Date d=new Date();
-				if("".equals(answer.getText())||optionA.getText().equals("")||optionB.getText().equals("")||optionC.getText().equals("")||optionD.getText().equals("")||subText.getText().equals("")||type.getSelectedItem().equals("")||subjectId .getSelectedItem().equals("")||paperId.getText().equals("")) {
-			
+				if("".equals(answer.getText())||optionA.getText().equals("")||optionB.getText().equals("")||optionC.getText().equals("")||optionD.getText().equals("")||subText.getText().equals("")||type.getSelectedItem().equals("")||subjectId .getSelectedItem().equals("")||cbPaperId.getSelectedItem().equals("")) {
 					JOptionPane.showMessageDialog(null, "不能有空");
+					return;
 					
 				}
- 				Question question=new Question(answer.getText(),d,optionA.getText(),optionB.getText(),optionC.getText(),optionD.getText(),optionE.getText(),subText.getText(),(String)type.getSelectedItem(),Integer.valueOf((String)(String)subjectId .getSelectedItem()),Integer.valueOf((String)paperId.getText()));
+				SubjectDao sd=new SubjectDaoImpl();	
+				Integer subj=sd.querysubjectId((String)subjectId.getSelectedItem());
+ 				Question question=new Question(answer.getText(),d,optionA.getText(),optionB.getText(),optionC.getText(),//
+ 						optionD.getText(),optionE.getText(),subText.getText(),//
+ 						(String)type.getSelectedItem(),subj,Integer.valueOf((String)cbPaperId.getSelectedItem()));
 				QuestionSettingDao questionset=new QuestionSettingDaoImpl();
 				Integer result=questionset.questionSetting(question);
 				if(result>0) {
 					
-					scrollPane.setViewportView(showtable(Integer.valueOf((String)(paperId.getText()))));
-					comboBox.setSelectedItem(paperId.getText());
+					scrollPane.setViewportView(showtable(Integer.valueOf((String)(cbPaperId.getSelectedItem()))));
+					comboBox.setSelectedItem(cbPaperId.getSelectedItem());
 					JOptionPane.showMessageDialog(null, "添加成功");
 //					
 					

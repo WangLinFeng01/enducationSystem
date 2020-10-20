@@ -193,7 +193,7 @@ public class ScoreFrame extends JFrame {
 			lineData.add(p.getScore());
 			model.addRow(lineData);
 		}
-		System.out.println("刷新成功");
+		System.out.println("查询成功");
 		//设置一下table上的鼠标点击事件
 	}
 	

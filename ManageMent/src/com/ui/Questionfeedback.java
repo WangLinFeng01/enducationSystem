@@ -158,7 +158,7 @@ public class Questionfeedback extends JFrame{
 		for(Teacher p:datas) {
 			Vector lineData=new Vector();
 			lineData.add(p.getUserName());
-			model.addAll(lineData);
+			model.addElement(lineData);;
 		}
 	}
 	
