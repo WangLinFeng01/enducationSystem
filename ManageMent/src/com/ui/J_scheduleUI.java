@@ -202,7 +202,6 @@ public class J_scheduleUI {
 		i1 = strS1[0];
 		i2 = strS1[1];
 		i3 = strS1[2];
-		System.out.println(i1+""+i2+i3);
 		//设置一下table上的鼠标点击事件
 		mouseClicked();
 	}
@@ -248,7 +247,7 @@ public class J_scheduleUI {
 		String stu =lblNewLabel_2.getText();//status
 		//执行操作
 		String str1 = "";
-		if(!stu.equals(str1)) {
+		if(!str1.equals(stu)) {
 			String sql = "update t_schedule set speed = ? where subject = ?";
 			Object[] params = {str,stu};//参数值
 			int i =new QueryRunner().execute(sql, params);
