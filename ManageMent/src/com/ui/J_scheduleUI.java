@@ -236,7 +236,7 @@ public class J_scheduleUI {
 			}
 		});
 	}
-	
+	//这是修改
 	private void updateTableStruct() {
 		//判断输入框是否为空,为空不执行操作
 		if(textField.getText().equals("") || lblNewLabel_2.getText().equals("") ) {
