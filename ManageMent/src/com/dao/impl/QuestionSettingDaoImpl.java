@@ -66,5 +66,13 @@ public class QuestionSettingDaoImpl implements QuestionSettingDao{
 		Integer result=new QueryRunner().execute(sql, obj);
 		return result;
 	}
+	@Override
+	public List<Question> selectQueryQuestion(Object[] params) {
+		//要根据id的值来查看试卷
+		String sql = "select * from question where paperId = ?";
+		//这个list中存放着关于数据库不同的question表元素
+		List<Question> list=(List<Question>) QueryRunner.query(sql, params, new BeanListResultSetHandler<Question>(Question.class));
+		return list;
+	}
 
 }

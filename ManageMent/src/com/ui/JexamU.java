@@ -265,7 +265,7 @@ public class JexamU {
 			frame.dispose();
 			//拿到传递给下一个界面的examId;
 			//想要拿到这个值,不能放到跳转代码里面
-			J_PaperDown.subjectId = Integer.parseInt(textField.getText());
+			J_PaperDown.examId = Integer.parseInt(textField.getText());
 			//跳转
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {

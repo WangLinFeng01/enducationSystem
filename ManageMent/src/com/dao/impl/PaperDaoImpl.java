@@ -27,6 +27,7 @@ public  class PaperDaoImpl implements PaperDao {
 	//筛选事件
 	@Override
 	public List<Paper> getChoiceDatas(Integer obj) {
+		//根据试卷ID来查询
 		String sql="select * from paper where id = ?";
 		Object[] params= {obj};
 		List<Paper> list=(List<Paper>) QueryRunner.query(sql, params, new BeanListResultSetHandler<Paper>(Paper.class));
@@ -61,5 +62,6 @@ public  class PaperDaoImpl implements PaperDao {
 		}
 		return list;
 	}
+
 
 }

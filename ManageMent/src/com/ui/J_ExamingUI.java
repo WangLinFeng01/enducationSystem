@@ -21,6 +21,9 @@ import java.util.Vector;
 
 import javax.swing.JTextField;
 
+import com.dao.UserDao;
+import com.dao.impl.QuestionSettingDaoImpl;
+import com.dao.impl.T_scoreDaoImpl;
 import com.pojo.Feedback;
 import com.pojo.Paper;
 import com.pojo.Question;
@@ -49,7 +52,7 @@ public class J_ExamingUI {
 	public  static Integer stuId = getStudentId(nameStu);//学生id(通过登录的学生名字来得到学生id)
 	public static Integer examId;//试卷ID
 	public  Integer subjectId;//科目ID
-	public static Integer score=0;//成绩
+	public  Integer score=0;//成绩
 	public Date insertTime;//插入时间
 	//(1)实现将数据库中的题目信息传到textAre中
 
@@ -97,8 +100,10 @@ public class J_ExamingUI {
 		JButton btnNewButton_1 = new JButton("提交试卷");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				score = showScore();//拿到分数;				
-				transferTable();
+				score = showScore();//拿到分数;	
+				T_scoreDaoImpl t_score = new T_scoreDaoImpl();
+				Object[] obj = {insertTime,score,examId,stuId,subjectId};
+				t_score.transferTable(obj);
 				btnNewButton_1.setEnabled(false);				
 //				System.exit(0); // 退出
 			}
@@ -269,10 +274,10 @@ public class J_ExamingUI {
 	public void createExam() {// 创建考试模块
 		String s;
 		//要根据id的值来查看试卷
-		String sql = "select * from question where paperId = ?";
 		Object[] params = {examId};
 		//这个list中存放着关于数据库不同的question表元素
-		List<Question> list=(List<Question>) QueryRunner.query(sql, params, new BeanListResultSetHandler<Question>(Question.class));
+		QuestionSettingDaoImpl qsdi = new QuestionSettingDaoImpl();
+		List<Question> list= qsdi.selectQueryQuestion(params);
 		for(Question p:list) {
 			s="";
 			String  ansStr = p.getAnswer();//第一行的答案
@@ -315,21 +320,11 @@ public class J_ExamingUI {
 		JOptionPane.showMessageDialog(null, "答对" + right + "题，答错" + error + "题，分数为" + score);
 		return score;
 	}	
-	//将分数传到t_scoer表中
-	public void transferTable() {
-		//成绩id,加入时间,最高成绩,试卷id,血
-		String sql="insert into t_scoer value (null,?,?,?,?,?)";
-		Object[] obj = {insertTime,score,examId,stuId,subjectId};
-		JOptionPane.showMessageDialog(null, "提交成功");
-		new QueryRunner().execute(sql, obj);
-	}
 	
 	//根据学生的姓名来得到学生ID
 	public static int getStudentId(String nameStu) {
 		int id = 0;
-		String sql = "select * from student";
-		Object[] params = null;
-		List<Student> list=(List<Student>) QueryRunner.query(sql, params, new BeanListResultSetHandler<Student>(Student.class));
+		List<Student> list= new UserDao().getDateAll();
 		for(Student s:list) {
 			if(s.getUserName().equals(nameStu)) {
 				id = s.getId();

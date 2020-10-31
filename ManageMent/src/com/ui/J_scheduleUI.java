@@ -248,9 +248,9 @@ public class J_scheduleUI {
 		//执行操作
 		String str1 = "";
 		if(!str1.equals(stu)) {
-			String sql = "update t_schedule set speed = ? where subject = ?";
+			T_scheduleDao t_schedule = new T_scheduleDaoImpl();
 			Object[] params = {str,stu};//参数值
-			int i =new QueryRunner().execute(sql, params);
+			int i=t_schedule.updateTable(params);
 			if(i>0) {
 				JOptionPane.showMessageDialog(null, "更新成功！");				
 			}

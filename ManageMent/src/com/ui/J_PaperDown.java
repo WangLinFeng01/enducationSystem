@@ -14,6 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.dao.UserDao;
+import com.dao.impl.QuestionSettingDaoImpl;
 import com.pojo.Question;
 import com.util.BeanListResultSetHandler;
 import com.util.QueryRunner;
@@ -31,7 +32,7 @@ public class J_PaperDown {
 	//设置一个装从JexamUI传递来的试卷Id;用static修饰保证是唯一的,且要实现多人考试,要用到事务回滚
 	//留的两个接口
 	
-	public static Integer subjectId;//科目ID
+	public static Integer examId;//科目ID
 	//(1)实现将数据库中的题目信息传到textAre中
 
 	StringBuffer s=new StringBuffer();
@@ -86,7 +87,7 @@ public class J_PaperDown {
 		textField_1.setBounds(207, 96, 203, 21);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
-		lblNewLabel_1.setText(subjectId+"");
+		lblNewLabel_1.setText(examId+"");
 		
 		JButton btnNewButton = new JButton("确认下载");
 		btnNewButton.setIcon(new ImageIcon(J_PaperDown.class.getResource("/images/enter.png")));
@@ -127,10 +128,9 @@ public class J_PaperDown {
 	//创建一个考试模块(将数据库中的信息读取到向量列表中)
 	public void createExam() {// 创建考试模块
 		//要根据id的值来查看试卷
-		String sql = "select * from question where subjectId = ?";
-		Object[] params = {subjectId};
+		Object[] params = {examId};
 		//这个list中存放着关于数据库不同的question表元素
-		List<Question> list=(List<Question>) QueryRunner.query(sql, params, new BeanListResultSetHandler<Question>(Question.class));
+		List<Question> list= new QuestionSettingDaoImpl().selectQueryQuestion(params);
 		for(Question p:list) {
 			String  strA = p.getOptionA();
 			String  strB = p.getOptionB();

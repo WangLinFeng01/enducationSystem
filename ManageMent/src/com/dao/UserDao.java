@@ -16,7 +16,9 @@ import javax.swing.JTextField;
 import com.base.BaseDaoImpl;
 import com.pojo.Student;
 import com.pojo.Teacher;
+import com.util.BeanListResultSetHandler;
 import com.util.JdbcUtils;
+import com.util.QueryRunner;
 
 //用户DAO类
 public class UserDao extends BaseDaoImpl <Student> {     
@@ -123,7 +125,12 @@ public class UserDao extends BaseDaoImpl <Student> {
         	
         }
         
-        
+        //获取student表的所有字段
+        public List<Student> getDateAll() {
+        	String sql = "select * from student";
+    		List<Student> list=(List<Student>) QueryRunner.query(sql, null, new BeanListResultSetHandler<Student>(Student.class));
+    		return list;
+        }
         
         
         

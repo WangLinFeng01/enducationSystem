@@ -11,9 +11,12 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import com.dao.T_scoreDao;
 import com.pojo.T_score;
 import com.util.JdbcUtils;
+import com.util.QueryRunner;
 
 
 public class T_scoreDaoImpl implements T_scoreDao {
@@ -49,5 +52,13 @@ public class T_scoreDaoImpl implements T_scoreDao {
 	@Override
 	public List<T_score> T_score_update(T_score score) {
 		return null;
+	}
+
+	@Override
+	public void transferTable(Object[] obj) {
+		//成绩id,加入时间,最高成绩,试卷id,
+		String sql="insert into t_scoer value (null,?,?,?,?,?)";
+		new QueryRunner().execute(sql, obj);
+		JOptionPane.showMessageDialog(null, "提交成功");		
 	}	
 }

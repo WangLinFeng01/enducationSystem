@@ -10,4 +10,5 @@ public interface QuestionSettingDao {
      public List<Question> queryQuestion(Integer paperId);
      public List queryPaperId();
      public Integer questionUpdate(Question question);
+     public List<Question> selectQueryQuestion(Object[] params);
 }

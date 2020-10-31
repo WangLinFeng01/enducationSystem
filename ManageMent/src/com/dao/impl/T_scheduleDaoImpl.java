@@ -18,4 +18,11 @@ public class T_scheduleDaoImpl implements T_scheduleDao {
 			List<T_schedule> list=(List<T_schedule>) QueryRunner.query(sql, params, new BeanListResultSetHandler<T_schedule>(T_schedule.class));
 			return list;
 	}
+
+	@Override
+	public int updateTable(Object[] params) {
+		String sql = "update t_schedule set speed = ? where subject = ?";
+		int i =new QueryRunner().execute(sql, params);
+		return i;
+	}
 }
